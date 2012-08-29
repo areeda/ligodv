@@ -12,6 +12,10 @@
 global curVersion;
 curVersion = '1.14a1';
 
+% Where to report problems
+global contact;
+contact='ligodv@gravity.phys.uwm.edu';
+
 % add paths to all our subdirectories
 myFilename = mfilename('fullpath'); % full path to this m-file which must be
                                     % in ligodv root for this to work

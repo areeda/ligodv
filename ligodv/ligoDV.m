@@ -83,6 +83,11 @@ global curVersion;
 vstr = sprintf('ligoDV Release %s',curVersion);
 set (handles.versionTxt,'String',vstr);
 
+global contact;
+vstr = sprintf('Contact: %s',contact);
+set (handles.contactInfo,'String',vstr);
+
+
 % Create a timer object to run our clock
 global ligoDVFigHandles;
 ligoDVFigHandles=handles;

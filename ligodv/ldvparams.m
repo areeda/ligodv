@@ -7,14 +7,7 @@
 %% General settings
 % 
 % 
-% current version number used for update check NB: 1.13b1 < 1.13 (the
-% released versuib).
-global curVersion;
-curVersion = '1.14a1';
 
-% Where to report problems
-global contact;
-contact='ligodv@gravity.phys.uwm.edu';
 
 % add paths to all our subdirectories
 myFilename = mfilename('fullpath'); % full path to this m-file which must be
@@ -45,6 +38,13 @@ elseif regexpi(comp,'pcwin')
 else
     mexPath = strcat(nds2Path,'/lib/matlab',matlabRel);
     addpath(mexPath);
+    jarPath = strcat(nds2Path,'/share/java/nds.jar');
+    if (exist(jarPath) == 2)
+        javaaddpath(jarPath);
+    else
+        ermsg('\nSWIG-Java bindings not found\n');
+        ndsErr=1;
+    end
 end
 n2gd = exist('NDS2_GetData');
 n2cl = exist('NDS2_GetChannels');
@@ -70,7 +70,15 @@ if (ndsErr == 1)
         warning(ermsg);
     end
 end
+%% note the javaaddpath above will clear the global variables
+% current version number used for update check NB: 1.13b1 < 1.13 (the
+% released versuib).
+global curVersion;
+curVersion = '1.14a2';
 
+% Where to report problems
+global contact;
+contact='ligodv@gravity.phys.uwm.edu';
 % if we are a pre-release we always want to nag if an upgrade is available
 Help.checkForUpdate(true);
 

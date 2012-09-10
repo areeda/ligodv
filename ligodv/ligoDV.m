@@ -1,5 +1,5 @@
-function varargout = ligoDV(varargin)
-% LIGODV M-file for ligoDV.fig
+
+%% LIGODV M-file for ligoDV.fig - the main GUI interface for the Data Viewer
 %      LIGODV, by itself, creates a new LIGODV or raises the existing
 %      singleton*.
 %
@@ -22,7 +22,10 @@ function varargout = ligoDV(varargin)
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 03-Aug-2012 14:31:40
+% Last Modified by GUIDE v2.5 02-Sep-2012 07:23:43
+
+%%
+function varargout = ligoDV(varargin)
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 0;
@@ -3392,3 +3395,21 @@ function plotOmegagramLogY_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of plotOmegagramLogY
+
+
+% --- If Enable == 'on', executes on mouse press in 5 pixel border.
+% --- Otherwise, executes on mouse press in 5 pixel border or over reloadChannelList.
+function reloadChannelList_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to reloadChannelList (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on key press with focus on reloadChannelList and none of its controls.
+function reloadChannelList_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to reloadChannelList (see GCBO)
+% eventdata  structure with the following fields (see UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)

@@ -32,31 +32,15 @@ if (isempty(nds2Path))
         'The easiest way to fix this is to set the environment variable "NDS2_LOCATION"\n',...
         'If you continue you will not have access to remote data');
     ndsErr = 1;
-elseif regexpi(comp,'pcwin')
-    mexPath = strcat(nds2Path,'/lib/matlab/',matlabRel);
-    addpath(mexPath);
 else
-    mexPath = strcat(nds2Path,'/lib/matlab',matlabRel);
-    addpath(mexPath);
     jarPath = strcat(nds2Path,'/share/java/nds.jar');
     if (exist(jarPath) == 2)
         javaaddpath(jarPath);
     else
-        ermsg('\nSWIG-Java bindings not found\n');
+        ermsg = sprintf('\nSWIG-Java bindings, nds.jar, not found\n\n%s\n',...
+            'If you continue you will not have access to remote data');
         ndsErr=1;
     end
-end
-n2gd = exist('NDS2_GetData');
-n2cl = exist('NDS2_GetChannels');
-ngd = exist('NDS_GetData');
-ncl = exist('NDS_GetChannels');
-if (n2gd ~= 3 || n2cl~=3 || ngd ~= 3 || ncl ~=3)
-    ermsg = sprintf('%s\n%s\n\n%s\n\n%s',...
-        'The NDS2_LOCATION environment variable is set incorrectly.',...
-        'Or the NDS2 client "mex" files are not installed properly.',...
-        'You may not be able to transfer data from ligo servers',...
-        'Do you want to run ligoDV anyway?');
-    ndsErr = 1;
 end
 
 if (ndsErr == 1)

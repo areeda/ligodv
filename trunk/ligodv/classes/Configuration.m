@@ -94,7 +94,7 @@ classdef Configuration < handle
             
             %Channel List/Select Panel
             this.channelSearchTxt       = get(handles.channelSearchTxt, 'String');
-            this.includeControlChansChk = get(handles.includeControlChansChk, 'Value');
+            this.includeControlChansChk = 1;
             
             % bit of reading their minds
             chListSize = length(get(handles.channelList,'String'));

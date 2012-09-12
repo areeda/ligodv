@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 02-Sep-2012 07:23:43
+% Last Modified by GUIDE v2.5 10-Sep-2012 14:32:26
 
 %%
 function varargout = ligoDV(varargin)
@@ -3413,3 +3413,17 @@ function reloadChannelList_KeyPressFcn(hObject, eventdata, handles)
 %	Character: character interpretation of the key(s) that was pressed
 %	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in searchChanBtn.
+function searchChanBtn_Callback(hObject, eventdata, handles)
+% hObject    handle to searchChanBtn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+  vals = chanFilter();
+  
+  disp(vals);
+  if (strcmpi(vals.cmd,'search'))
+      ldv_getChannelList2(handles,vals);
+  end
+  

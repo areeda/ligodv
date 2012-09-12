@@ -4,14 +4,22 @@
 %
 %  Usage:  
 %
-%    chanlist = NDS2_GetChannels(server[, chan_type[, gps [,minFs]])
+%    chanlist = NDS2_GetChannels(server[, chan_type[gps,[, selStruct]])
 %
 %  Where:  
 %
 %    server   is a string with the NDS2 server ip address and port ('<ip-addr>:<port>')
 %    chantype is the channel type string of the requested channels.
-%    gps      request channels available at te specified GPS time
-%    minFs    minimum sample rate frequency to return
+%    gps is the start GPS time.  NDS2 server will only return channels with
+%       data available at that time.  -1 means ignore.
+%    selStruct selection dialog parameter structure
+%           cmd     Command used to exit the dialog
+%           fs      Sample frequency
+%           fscomp  Comparator (< <= = >= >) for sample freq
+%           ifo     Inferometer name (H0, L1, HVE-EX...)
+%           subsys  Subsystem (PEM, PSL...)
+%           filtstr Name filter string
+%       
 %
 % returns:
 %    chanlist is a Matlab array of structures containing channel information
@@ -27,16 +35,25 @@
 % See also NDS_GetChannels, NDS_GetData, NDS2_GetData.
 function chanlist = NDS2_JGetChannels(server, varargin)
     chan_type='';
+    data_type = DataType.DATA_TYPE_ALL;
     gps = -1;
-    if (nargin > 3)
+    selStruct = struct('cmd','','fs','','fscomp','',...
+        'ifo','', 'subsys','','filtstr','');
+    if (nargin > 4)
         error('too many arguments in call to NDS2_JGetChannels');
-    elseif (nargin > 2)
+    end
+    if (nargin > 3)
+        selStruct = varargin{3};
+    end
+    if (nargin > 2)
             gps = varargin{2};
-    elseif (nargin > 1)
+    end
+    if (nargin > 1)
         chan_type = varargin{1};
     end
     
     disp(sprintf('Call to NDS2_JGetChannels: %s, type: %s, gps: %d', server, chan_type, gps));
+    disp(selStruct);
     
     p=strfind(server,':');
     srv=server;
@@ -46,25 +63,89 @@ function chanlist = NDS2_JGetChannels(server, varargin)
         port=str2num(server(p+1:length(server)));
     end
     
-    conn=nds.connection(srv,port);
+    % build the name matching string
+    srchStr='';
+    
+    ifo = selStruct.ifo;
+    subsys = selStruct.subsys;
+    filtstr = selStruct.filtstr;
+    
+    k = strfind(filtstr,':');
+    hasIfo = ~isempty(k);
+    hasSubsys = ~isempty(k) && k < length(filtstr);
+    
+    if(~hasIfo && ~isempty(ifo) && ~strcmpi(ifo,'any'))
+        srchStr=[ifo ':'];
+        hasIfo=true;
+    end
+    
+    if (~hasSubsys && ~isempty(subsys) && ~strcmpi(subsys,'any'))
+        if (~hasIfo)
+            srchStr = '*';
+        end
+        
+        srchStr = [srchStr subsys];
+        hasSubsys = true;
+    end
+    
+    if (~isempty(srchStr))
+        srchStr = [ srchStr '*' filtstr '*'];
+    elseif (~isempty(filtstr))
+        srchStr = ['*' filtstr '*'];
+    else
+        srchStr = ['*'];
+    end
+    srchStr=upper(srchStr);
+    
+    % see if they specified a sample frequency range
+    fsstr = selStruct.fs;
+    fscomp = selStruct.fscomp;
+    minFs =0;
+    maxFs = 131072;
+    if (~isempty(fsstr) && ~strcmpi(fsstr,'any'))
+        fs=str2double(fsstr);
+        switch(fscomp)
+            case '<'
+                maxFs = fs-1;
+            case '<='
+                maxFs = fs;
+            case '='
+                minFs = fs;
+                maxFs = fs;
+            case '>='
+                minFs = fs;
+            case '>'
+                minFs = fs+1;
+        end
+    end
+        
+    
+    
     chtype = ChannelType.str2code(chan_type);
     if (chtype == 0)
         chtype = ChannelType.CHANNEL_TYPE_RAW;
     end
     start = now;
     
-    chls = conn.findChannels('*',chtype);
+    % get the channel list specified
+    conn=nds.connection(srv,port);
+
+    chls = conn.findChannels(srchStr, chtype, data_type, minFs, maxFs);
+
     chTime=(now-start)*24*3600;
     disp(sprintf('conn.find took %.2f sec\n',chTime));
     
     nchan = length(chls);
     nochan = nchan;
     if (chtype == ChannelType.CHANNEL_TYPE_MTREND || chtype == ChannelType.CHANNEL_TYPE_STREND)
-        nochan = floor((nchan+4)/5)
+        nochan = floor((nchan+4)/5);
     end
     chTypeName = ChannelType.code2str(chtype);
     dtypes = DataType();
     k1=1;
+    if (nochan == 0)
+        chanlist = [];
+    end
     
     for k=[1:nchan]
         chan=chls(k);

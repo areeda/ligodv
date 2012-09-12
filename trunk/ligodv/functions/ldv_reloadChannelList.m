@@ -19,19 +19,11 @@ if (isempty(channels))
     channels = getappdata(handles.main, 'FullChannelList');
 end
 
-% Check whether low sample rate channels should be included
-include_control = get(handles.includeControlChansChk, 'Value');
 
 if strcmp(dvmode,'NDS Server')
 % get rid of test point channels (only useful for real time display)
 idx = find([channels(:).tpnum] == 0); % tpnum>1 for test point chans
 channels = channels(idx);
-end
-
-if ~include_control
-    % get rid of low sample rate channels
-    idx = find([channels(:).rate] >= 256);
-    channels = channels(idx);
 end
 
 % export chans variable

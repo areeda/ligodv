@@ -12,6 +12,7 @@ classdef ChannelType
         CHANNEL_TYPE_MTREND = 16;
         CHANNEL_TYPE_TEST_POINT = 32;
         CHANNEL_TYPE_STATIC = 64;
+        CHANNEL_TYPE_ALL = 64+32+16+8+4+2+1;
     end
     % fast lookup for inner loops
     properties (SetAccess = private, GetAccess = public)    % public get is for debugging only

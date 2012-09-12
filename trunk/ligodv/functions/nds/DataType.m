@@ -10,6 +10,7 @@ classdef DataType
         DATA_TYPE_FLOAT32 = 8;
         DATA_TYPE_FLOAT64 = 16; 
         DATA_TYPE_COMPLEX32 = 32; 
+        DATA_TYPE_ALL = 32+16+8+4+2+1;
         
         tbl = struct('code',{1,2,4,8,16,32},'name',{'INT16','INT32','INT64','FLOAT32','FLOAT64','COMPLEX32'});
     end

@@ -93,7 +93,7 @@ if [ $err -eq 0 ]; then
     echo "ligoDV is located in $LIGODV_LOCATION/ligodv"
     cd $LIGODV_LOCATION/ligodv
 
-   $MATLAB -r ligoDV
+   $MATLAB -r ligoDV 
 else
   echo "Problem detected."
   echo "Please resolve and try again"

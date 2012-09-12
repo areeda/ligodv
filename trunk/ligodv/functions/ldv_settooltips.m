@@ -119,17 +119,11 @@ set(handles.commentInput, 'TooltipString', tip);
 
 %% Channel List Panel
 
-% get channel list
-tip = sprintf('Get a channel list from the selected server.');
-set(handles.getChannelListBtn, 'TooltipString', tip);
 
 % channel list
 tip = sprintf('Displays channel name and sample rate in Hz.\n Select the channels you wish to get data for.');
 set(handles.channelList, 'TooltipString', tip);
 
-% with control channels
-tip = sprintf('Include channels sampled at less than 256Hz in the list.');
-set(handles.includeControlChansChk, 'TooltipString', tip);
 
 % search box
 tip = sprintf('Search for channels containing a particular string.\n This uses AND functionality and is not case sensitive.');

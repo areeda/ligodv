@@ -58,7 +58,7 @@ end
 % current version number used for update check NB: 1.13b1 < 1.13 (the
 % released versuib).
 global curVersion;
-curVersion = '1.14a2';
+curVersion = '1.14a3';
 
 % Where to report problems
 global contact;

@@ -48,7 +48,7 @@ classdef Configuration < handle
         
         % Channel Select panel
         channelSearchTxt;           % Search string
-        includeControlChansChk;     % include < 256 Hz check box
+       
         channelList;                % List of SELECTED channels
         
         % xml document
@@ -94,12 +94,12 @@ classdef Configuration < handle
             
             %Channel List/Select Panel
             this.channelSearchTxt       = get(handles.channelSearchTxt, 'String');
-            this.includeControlChansChk = 1;
+            
             
             % bit of reading their minds
             chListSize = length(get(handles.channelList,'String'));
             chSelSize = length(get(handles.channelList,'Value'));
-            if (chListSize < 50 & chSelSize < 2)
+            if (chListSize < 50 && chSelSize < 2)
                 % assume they don't want to save just one channel from an
                 % already short list
                 this.channelList = get(handles.channelList,'String');
@@ -314,7 +314,7 @@ classdef Configuration < handle
             
            chan = this.docNode.createElement('ChannelSelect');
            this.addTextEl(chan, 'channelSearchTxt', this.channelSearchTxt);
-           this.addBoolEl(chan, 'includeControlChansChk', this.includeControlChansChk);
+          
            this.addStrListEl(chan, 'channelList', this.channelList);
 
            root.appendChild(chan);
@@ -558,13 +558,7 @@ classdef Configuration < handle
                 if(~isempty(val))
                     this.channelSearchTxt  = val;
                 end
-                
-                val = this.getBoolEl(chn,'includeControlChansChk');
-                if(~isempty(val))
-                    val = 0;
-                end
-                this.includeControlChansChk  = val;
-                
+                 
                 val = this.getStrListEl(chn,'channelList');
                 if(~isempty(val))
                     this.channelList  = val;
@@ -716,7 +710,6 @@ classdef Configuration < handle
             % widgets
             
             set(handles.channelSearchTxt, 'String', this.channelSearchTxt);
-            set(handles.includeControlChansChk, 'Value', this.includeControlChansChk);
             
             set(handles.channelList, 'Value', [1]);
             set(handles.channelList, 'ListboxTop', [1]);

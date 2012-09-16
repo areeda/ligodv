@@ -29,7 +29,7 @@ switch dvmode
         % save the full channel list as app data
         setappdata(handles.main, 'FullChannelList', channels);
         % Check whether low sample rate channels should be included
-        include_low_sr = get(handles.includeControlChansChk, 'Value');
+        include_low_sr = false;
         % get rid of test point channels (only useful for real time display)
         idx = find([channels(:).tpnum] == 0); % tpnum>1 for test point chans
         channels = channels(idx);
@@ -133,7 +133,7 @@ switch dvmode
             % save the full channel list as app data
             setappdata(handles.main, 'FullChannelList', channels);
             % Check whether low sample rate channels should be included
-            include_low_sr = get(handles.includeControlChansChk, 'Value');
+            include_low_sr = false;
             % get rid of test point channels (only useful for real time display)
             %idx = find([channels(:).tpnum] == 0); % tpnum>1 for test point chans
             %channels = channels(idx);

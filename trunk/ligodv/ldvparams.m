@@ -58,7 +58,7 @@ end
 % current version number used for update check NB: 1.13b1 < 1.13 (the
 % released versuib).
 global curVersion;
-curVersion = '1.14a3';
+curVersion = '1.14a4';
 
 % Where to report problems
 global contact;
@@ -139,6 +139,7 @@ settings.time.modes   = {'UTC', 'GPS'};
 settings.gd.data_types = { 'raw data',...
                            'second trends',...
                            'minute trends',...
+                           'reduced data',...
                           };
 
 % Possible default servers

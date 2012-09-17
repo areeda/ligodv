@@ -15,7 +15,13 @@ channels = getappdata(handles.main, 'FullChannelList');
 % if we reloaded a saved channel list but never queried the server
 % we have to do the query now
 if (isempty(channels))
-    ldv_getChannelList(handles);
+    vals = chanFilter();
+  
+    disp(vals);
+    if (strcmpi(vals.cmd,'search'))
+        ldv_getChannelList2(handles,vals);
+    end
+    
     channels = getappdata(handles.main, 'FullChannelList');
 end
 

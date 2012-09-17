@@ -148,7 +148,7 @@ function dobjs = ldv_getdata(varargin)
 
                 % data
                 dobjs.objs(dobjs.nobjs).data.x               = x;
-                if strcmp(params.dtype, 'raw data')
+                if strcmp(params.dtype, 'raw data') || strcmp(params.dtype, 'reduced data')
                     dobjs.objs(dobjs.nobjs).data.fs          = fs;
                 end
                 dobjs.objs(dobjs.nobjs).data.unitX           = unitX;

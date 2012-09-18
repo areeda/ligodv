@@ -22,20 +22,23 @@ function dobjs = ldv_getdata(varargin)
     % append trend type to channel names
     if strcmp(params.dtype, 'second trends') || strcmp(params.dtype, 'minute trends')
         stat = ldv_getgdstat(handles);
-        if strcmp(stat,'max,mean,min')
-            for k=1:size(params.channels,1)
-                chanstemp(k+2*(k-1)+0) = strcat({deblank(params.channels(k,:))},'.max');
-                chanstemp(k+2*(k-1)+1) = strcat({deblank(params.channels(k,:))},'.mean');
-                chanstemp(k+2*(k-1)+2) = strcat({deblank(params.channels(k,:))},'.min');
+        for k=1:size(params.channels,1)
+            chnam=params.channels(k,:);
+            p=strfind(chnam,' ');
+            if (length(p) > 1)
+                p=p(1);
+                chnam = chnam(1:p-1);
             end
-        elseif strcmp(stat,'max,min')
-            for k=1:size(params.channels,1)
-                chanstemp(k+2*(k-1)+0) = strcat({deblank(params.channels(k,:))},'.max');
-                chanstemp(k+2*(k-1)+1) = strcat({deblank(params.channels(k,:))},'.min');
-            end
-        else
-            for k=1:size(params.channels,1)
-                chanstemp(k) = strcat({deblank(params.channels(k,:))},'.',stat);
+
+            if strcmp(stat,'max,mean,min')
+                chanstemp(k+3*(k-1)+0) = strcat({chnam},'.max');
+                chanstemp(k+3*(k-1)+1) = strcat({chnam},'.mean');
+                chanstemp(k+3*(k-1)+2) = strcat({chnam},'.min');
+            elseif strcmp(stat,'max,min')
+                chanstemp(k+2*(k-1)+0) = strcat({chnam},'.max');
+                chanstemp(k+2*(k-1)+1) = strcat({chnam},'.min');
+            else
+                chanstemp(k) = strcat({chnam},'.',stat);
             end
         end
         params.channels = char(chanstemp);

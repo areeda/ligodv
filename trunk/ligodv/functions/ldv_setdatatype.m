@@ -17,7 +17,7 @@ switch pstr
       
   % raw data files
     
-  case {'raw data','rds'}
+  case {'raw data','rds', 'reduced data'}
     
     setstate(handles.gd_portInputTxt, 'on');    % switch on port field
     setstate(handles.gd_rdslevel, 'off');       % switch off rds input
@@ -31,7 +31,7 @@ switch pstr
     setstate(handles.gd_stat, 'on');           % switch on stat input    
     
   otherwise
-    error('Unknown data type')
+    error('Unknown data type: %s', pstr)
 end
 
 end

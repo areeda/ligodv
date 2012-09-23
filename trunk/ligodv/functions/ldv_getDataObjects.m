@@ -39,7 +39,7 @@ function ldv_getDataObjects(handles)
   setappdata(handles.main, 'dobjs', dobjs);
   ldv_setnobjsdisplay(handles, dobjs);
   ldv_setdobjslist(handles, dobjs, didx(didx<dobjs.nobjs));
-  
+  drawnow;  % make sure the new objects are shown
 end
 
 

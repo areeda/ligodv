@@ -16,7 +16,29 @@ myFilename = mfilename('fullpath'); % full path to this m-file which must be
 
 addpath(genpath(ligodvRootPath));   % genpath finds all subdirectories
 
-% add paths to NDS2 mex files
+%%
+jarPath = [ligodvRootPath '/jars/OdcPlot.jar'];
+t=exist(jarPath, 'file');
+ermsg = '';
+if (t == 2)
+    javaaddpath(jarPath);
+    else
+        ermsg = sprintf('\nODC Plot functions OdcPlot.jar, not found\n\n%s\n',...
+            'If you continue you will not have access to remote data');
+        ndsErr=1;
+end
+if (~isempty(ermsg))
+    answer = questdlg(ermsg,'ODC plot not Found','Continue','Exit','Help','Exit');
+    if (strcmp(answer,'Exit'))
+        error(ermsg);
+    elseif (strcmp(answer,'Help'))
+        Help.show2('NDS2_Install#Troubleshooting');
+        error(ermsg);
+    else
+        warning(ermsg);
+    end
+end
+%% add paths nds java interface
 matlabRel=version('-release');
 nds2Path = getenv('NDS2_LOCATION');
 comp = computer;        % some paths vary depending on OS
@@ -34,7 +56,7 @@ if (isempty(nds2Path))
     ndsErr = 1;
 else
     jarPath = strcat(nds2Path,'/share/java/nds.jar');
-    if (exist(jarPath) == 2)
+    if (exist(jarPath,'file') == 2)
         javaaddpath(jarPath);
     else
         ermsg = sprintf('\nSWIG-Java bindings, nds.jar, not found\n\n%s\n',...
@@ -54,11 +76,11 @@ if (ndsErr == 1)
         warning(ermsg);
     end
 end
-%% note the javaaddpath above will clear the global variables
+%% 
 % current version number used for update check NB: 1.13b1 < 1.13 (the
-% released versuib).
+% released version).
 global curVersion;
-curVersion = '1.14a6';
+curVersion = '1.14a7';
 
 % Where to report problems
 global contact;

@@ -29,7 +29,7 @@ classdef Help < handle
             % context
             
             url = [Help.helpRoot pageName];
-            web(url,'-browser');
+            web(url);
         end
         
         
@@ -38,13 +38,13 @@ classdef Help < handle
             % context
             
             url = [Help.wikiRoot pageName];
-            web(url,'-browser');
+            web(url);
         end
         
         function home()
             % Launch a browser to our home page
             
-            web(Help.homePage,'-browser');
+            web(Help.homePage);
         end
         
         function checkForUpdate(bequiet)

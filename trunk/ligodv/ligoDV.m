@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 10-Sep-2012 14:32:26
+% Last Modified by GUIDE v2.5 09-Oct-2012 17:23:56
 
 %%
 function varargout = ligoDV(varargin)
@@ -3427,3 +3427,19 @@ function searchChanBtn_Callback(hObject, eventdata, handles)
       ldv_getChannelList2(handles,vals);
   end
   
+
+
+% --------------------------------------------------------------------
+function otherPlots_Callback(hObject, eventdata, handles)
+% hObject    handle to otherPlots (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function odcPlot_Callback(hObject, eventdata, handles)
+% hObject    handle to odcPlot (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    CallOdcPlot(handles);
+    

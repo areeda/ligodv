@@ -8,8 +8,7 @@ function ldv_getDataObjects(handles)
 % 
 
   % get the settings
-  [dtype, server, port,...
-      times, channels] = getsettings(handles);
+  [dtype, server, port, times, channels] = gui_getDataSpec(handles);
   
   % get data objects
   newdobjs = ldv_getdata(handles, dtype,...
@@ -45,42 +44,4 @@ end
 
 
 
-
-%% ------------------------------------------------------------------------
-function [dtype, server, port, times, channels]...
-            = getsettings(handles)
-% Get the settings for data
-
-
-  % what type of data?
-  dtype = ldv_getselectionbox(handles.gd_dataTypeSelect);
-  % server 
-  server = ldv_getserver(handles);
-  % port
-  port = ldv_getport(handles);
-  
-  % list of times or single?
-  if get(handles.timeListRB, 'Value')==1
-    
-    times = getappdata(handles.main, 'times');
-    
-  elseif get(handles.singleTimeRB, 'Value')==1
-    % start time
-    startgps = ldv_getstartgps(handles);
-    % stop time
-    stopgps = ldv_getstopgps(handles);  
-    
-    times.ntimes = 1;
-    times.t(1).startgps = startgps;
-    times.t(1).stopgps  = stopgps;
-    times.t(1).comment  = ldv_getcomment(handles);
-    
-  else
-    error('### wrong time source selection')
-  end
-  
-  % get channels
-  channels = ldv_getselectedchannels(handles);
-  
-end
 

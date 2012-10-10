@@ -6,22 +6,26 @@ function ldv_getdataobject(handles)
 %
 % $Id$
 
+    % first see if there's anything to do
+    channels = ldv_getselectedchannels(handles);
+    if (isempty(channels))
+        msgbox('Channel list is empty or none selected.', 'Get Data Error', 'error');
+    else
+        % get the data retrieval mode
+        dvmode = ldv_getselectionbox(handles.dvmode);
 
-% get the data retrieval mode
-dvmode = ldv_getselectionbox(handles.dvmode);
+        switch dvmode
 
-switch dvmode
+            case {'NDS Server', 'NDS2 Server'}
 
-    case {'NDS Server', 'NDS2 Server'}
+                ldv_getDataObjects(handles);
 
-        ldv_getDataObjects(handles);
+            case 'LDR Server'
 
-    case 'LDR Server'
+                dv_getFrameDataObjects(handles);
 
-        dv_getFrameDataObjects(handles);
-
-    otherwise
-        error('### unknown dataviewer mode');
+            otherwise
+                error('### unknown data retrieval mode');
+        end
+    end
 end
-
-% END

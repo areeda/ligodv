@@ -193,6 +193,7 @@ function dobjs = ldv_getdata(varargin)
                 goodDataMsg = [goodDataMsg sprintf('+%s: %d sec received\n',...
                     params.channel, (stopgps-startgps))];
             end  % good data recieved
+            drawnow();
         end % each time interval in list
     end % each channel in list
 
@@ -206,7 +207,7 @@ function dobjs = ldv_getdata(varargin)
         disp(ermsg);
         msgbox(ermsg,'Problem(s) getting data','warn');
     end
-
+    drawnow();      % update the Data pool window.
 end
 
 

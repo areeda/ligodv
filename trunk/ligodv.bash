@@ -11,7 +11,7 @@
 #export NDS2_LOCATION=$HOME/nds2_client
 
 # set this tos select one of multiple Matlab versions or if Matlab is not in your path
-export MATLAB=/usr/local/MATLAB/R2012b/bin/matlab
+#export MATLAB=/usr/local/MATLAB/R2012b/bin/matlab
 
 #export LD_LIBRARY_PATH=<enter location of nds libraries if necessary here>
 #export MATLABPATH=<put the path to any additional matlab .m or .mex<arch> files here>
@@ -99,10 +99,14 @@ if [ $err -eq 0 ]; then
 	klist -s
 	if [ $? == 1 ] ; then
   		echo "You need to do a kinit if you want to pull data"
-  	else
-		# finally we get to start it
-   		$MATLAB -r ligoDV | grep -v "exclude an item from Time Machine"
+  		read -p "Continue anyway [y/N]?"
+  		if [ $REPLY != "y" ] ; then
+  		  exit 1;
+  		fi
 	fi
+  
+	# finally we get to start it
+   	$MATLAB -r ligoDV 2>&1 | grep -v "exclude an item from Time Machine"
 else
   echo "Problem detected."
   echo "Please resolve and try again"

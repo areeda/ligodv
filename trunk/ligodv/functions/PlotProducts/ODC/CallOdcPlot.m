@@ -14,15 +14,22 @@ function CallOdcPlot(handles)
     nTimes = times.ntimes;
     for  i = [1:nTimes]
         thisTime = times.t(i);
+        tn=[tempname '.png'];
         
         startGPS = thisTime.startgps;
         duration = thisTime.stopgps - startGPS;
-        mg=odcplot.MatlabGlue();
-        tn=[tempname '.png'];
+        ret='Unknown error.';
         try
-            ret = mg.createImageFile(java.lang.Integer(startGPS),java.lang.Integer(duration),java.lang.String(tn));
+                    
+            mg=odcplot.MatlabGlue();
+            pb=ldvjutils.Progress();
+            pb.setVisible(true);
+            mg.setProgress(pb);
+            
+            jret = mg.createImageFile(java.lang.Integer(startGPS),java.lang.Integer(duration),java.lang.String(tn));
+            ret = char(jret);   % convert a Java string to a Matlab string
         catch ex
-            disp(ex);
+            disp(ex.message);
         end
         if (strcmpi(ret,'success'))
             [img,map] = imread(tn,'png');
@@ -47,7 +54,10 @@ function CallOdcPlot(handles)
                 ermsg = char(ret);
             end
         end 
+        delete (tn);
+        pb.dispose(); 
     end
+    
     if (~ isempty(ermsg))
         msgbox(ermsg,'OdcPlot did not complete');
     end

@@ -4,7 +4,7 @@
 %
 % $Id$
 
-%% General settings
+%% General settingsclear java
 % 
 % 
 
@@ -17,11 +17,16 @@ myFilename = mfilename('fullpath'); % full path to this m-file which must be
 addpath(genpath(ligodvRootPath));   % genpath finds all subdirectories
 
 %%
-jarPath = [ligodvRootPath '/jars/OdcPlot.jar'];
-t=exist(jarPath, 'file');
+jarPath = [ligodvRootPath '/jars'];
+t=exist(jarPath, 'dir');
 ermsg = '';
-if (t == 2)
-    javaaddpath(jarPath);
+if (t == 7)
+    jarList= dir([jarPath '/*.jar']);
+    for(j = [1:length(jarList)])
+        jar = jarList(j);
+        jarName = [jarPath '/' jar.name];
+        javaaddpath(jarName);
+    end
     else
         ermsg = sprintf('\nODC Plot functions OdcPlot.jar, not found\n\n%s\n',...
             'If you continue you will not have access to remote data');
@@ -80,7 +85,7 @@ end
 % current version number used for update check NB: 1.13b1 < 1.13 (the
 % released version).
 global curVersion;
-curVersion = '1.14a7';
+curVersion = '1.14a8';
 
 % Where to report problems
 global contact;

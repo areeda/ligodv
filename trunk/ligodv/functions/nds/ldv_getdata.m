@@ -63,6 +63,10 @@ function dobjs = ldv_getdata(varargin)
     ermsg = ''; % we'll put our notes on problems here
     goodDataMsg = '';  % records successful transfers
 
+    % display progress dialog
+    [progBar, tsec] =TransProgbarSetup(params, primeTime);
+    progBar.startTiming(tsec);  %
+    
     for time=1:ntimes
         for ch=1:nchans
 
@@ -113,7 +117,8 @@ function dobjs = ldv_getdata(varargin)
             x=[];   % just is 
             fs=0;
             try
-                [x,fs,preproc,unitX,unitY] = ldv_getchanneldata(params, handles);
+               % transProgSetTime(time,ch,params,progBar);
+                [x,fs,preproc,unitX,unitY] = ldv_getchanneldata(params, handles,progBar);
             catch e
                 % we're in an inner loop just record the error and display
                 % them all at once when we're done.
@@ -208,6 +213,7 @@ function dobjs = ldv_getdata(varargin)
         msgbox(ermsg,'Problem(s) getting data','warn');
     end
     drawnow();      % update the Data pool window.
+    progBar.done();  % close the progress bar dialog
 end
 
 

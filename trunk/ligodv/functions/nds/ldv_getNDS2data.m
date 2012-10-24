@@ -1,7 +1,5 @@
 function [x,fs]  = ldv_getNDS2data(dtype, server, port,...
-    startgps, stopgps,...
-    channel, handles,...
-    serverchannels)
+    startgps, stopgps, inchannel, handles,progBar)
 
 % LDV_GETNDS2DATA get a segment of data from and NDS2 server. 
 %
@@ -13,6 +11,14 @@ function [x,fs]  = ldv_getNDS2data(dtype, server, port,...
     duration = stopgps - startgps;
     serverstring = [server ':' num2str(port)];
 
+    % isolate just the channel name
+    p = strfind(inchannel,' ');
+    if (~isempty(p))
+        channel = inchannel(1:p(1)-1);
+    else
+        channel=inchannel;
+    end
+    
     % get the data segment
     switch dtype
 
@@ -32,10 +38,8 @@ function [x,fs]  = ldv_getNDS2data(dtype, server, port,...
 
             error('### unknown data type');
     end
-    channeldata = NDS2_JGetData({channel},...
-                startgps,...
-                duration,...
-                serverstring);
+    channeldata = NDS2_JGetData({channel}, startgps, duration,...
+                serverstring,progBar);
 
     % get units
     units = ldv_setunit(handles);

@@ -93,6 +93,13 @@ contact='ligodv@gravity.phys.uwm.edu';
 % if we are a pre-release we always want to nag if an upgrade is available
 Help.checkForUpdate(true);
 
+% initialize things we want to remember
+global chanSelectVals;  % keep the dialog settings from last time
+chanSelectVals=struct;
+
+global importDirectory; % where we're importing ldvw files from
+importDirectory='';
+
 
 % Debug level
 settings.general.debugLevel       = 1;

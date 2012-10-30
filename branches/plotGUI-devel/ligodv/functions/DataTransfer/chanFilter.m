@@ -101,6 +101,18 @@ FigPos(3:4)=[FigWidth FigHeight];
 set(hObject, 'Position', FigPos);
 set(hObject, 'Units', OldUnits);
 
+%-----added by jsa to remember values from last call
+global chanSelectVals;  % save the selections for next time
+
+if (isfield(chanSelectVals, 'filtStr'))
+    set(handles.fsPopup,'value',chanSelectVals.fsIndex);
+    set(handles.ifoPopup,'value',chanSelectVals.ifoIndex);
+    set(handles.subsysPopup,'value',chanSelectVals.subsysIndex);
+    set(handles.fsComp,'value',chanSelectVals.fsCompVal);
+    set(handles.nameFiltText,'String',chanSelectVals.filtStr);
+end
+%----------------------------------------
+
 % Make the GUI modal
 set(handles.ChanFilter,'WindowStyle','modal')
 
@@ -115,26 +127,32 @@ function varargout = chanFilter_OutputFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Get default command line output from handles structure
+global chanSelectVals;  % save the selections for next time
 
 v=get(handles.fsPopup,'value');
 s=get(handles.fsPopup,'String');
+chanSelectVals.fsIndex=v;
 fs=s(v);
 
 v=get(handles.ifoPopup,'value');
 s=get(handles.ifoPopup,'String');
+chanSelectVals.ifoIndex = v;
 ifo=s(v);
 
 v=get(handles.subsysPopup,'value');
 s=get(handles.subsysPopup,'String');
+chanSelectVals.subsysIndex = v;
 subsys=s(v);
 
 v=get(handles.fsComp,'value');
 s=get(handles.fsComp,'String');
+chanSelectVals.fsCompVal = v;
 fsComp=s(v);
 
 filtStr= get(handles.nameFiltText,'String');
+chanSelectVals.filtStr = filtStr;
 
-varargout{1} = struct( ...
+vals = struct( ...
     'cmd',  handles.output,...
     'fs', fs, ...
     'ifo', ifo, ...
@@ -143,6 +161,7 @@ varargout{1} = struct( ...
     'filtstr', filtStr ...
     );
 
+varargout{1} = vals;    % return them to caller
 % The figure can be deleted now
 delete(handles.ChanFilter);
 

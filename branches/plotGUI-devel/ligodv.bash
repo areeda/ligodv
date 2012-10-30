@@ -99,6 +99,8 @@ if [ $err -eq 0 ]; then
 	klist -s
 	if [ $? == 1 ] ; then
   		echo "You need to do a kinit if you want to pull data"
+		echo "eg: kinit albert.einstein@LIGO.ORG"
+
   		read -p "Continue anyway [y/N]?"
   		if [ $REPLY != "y" ] ; then
   		  exit 1;

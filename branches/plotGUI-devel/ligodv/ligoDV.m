@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 09-Oct-2012 17:23:56
+% Last Modified by GUIDE v2.5 27-Oct-2012 08:05:26
 
 %%
 function varargout = ligoDV(varargin)
@@ -3430,16 +3430,139 @@ function searchChanBtn_Callback(hObject, eventdata, handles)
 
 
 % --------------------------------------------------------------------
-function otherPlots_Callback(hObject, eventdata, handles)
-% hObject    handle to otherPlots (see GCBO)
+function plots_Callback(hObject, eventdata, handles)
+% hObject    handle to plots (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 
 % --------------------------------------------------------------------
-function odcPlot_Callback(hObject, eventdata, handles)
-% hObject    handle to odcPlot (see GCBO)
+function odcPlotMI_Callback(hObject, eventdata, handles)
+% hObject    handle to odcPlotMI (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     CallOdcPlot(handles);
     
+
+
+% --------------------------------------------------------------------
+function coherenceMI_Callback(hObject, eventdata, handles)
+% hObject    handle to coherenceMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function Untitled_2_Callback(hObject, eventdata, handles)
+% hObject    handle to Untitled_2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function histogramMI_Callback(hObject, eventdata, handles)
+% hObject    handle to histogramMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function omegaScanMI_Callback(hObject, eventdata, handles)
+% hObject    handle to omegaScanMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function spectrogram_Callback(hObject, eventdata, handles)
+% hObject    handle to spectrogram (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    spectrogramParam();
+
+% --------------------------------------------------------------------
+function spectrumMI_Callback(hObject, eventdata, handles)
+% hObject    handle to spectrumMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    spectrumParam();
+
+% --------------------------------------------------------------------
+function timeSeriesMI_Callback(hObject, eventdata, handles)
+% hObject    handle to timeSeriesMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    timeSeriesParam();
+
+% --------------------------------------------------------------------
+function tfCpsdMI_Callback(hObject, eventdata, handles)
+% hObject    handle to tfCpsdMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function xyScatterMI_Callback(hObject, eventdata, handles)
+% hObject    handle to xyScatterMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function bicoherenceMI_Callback(hObject, eventdata, handles)
+% hObject    handle to bicoherenceMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function testdataMenu_Callback(hObject, eventdata, handles)
+% hObject    handle to testdataMenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function sawtoothMI_Callback(hObject, eventdata, handles)
+% hObject    handle to sawtoothMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    generateSawtooth(handles);
+
+
+% --------------------------------------------------------------------
+function singlesineTestMI_Callback(hObject, eventdata, handles)
+% hObject    handle to singlesineTestMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    generateSinglesine(handles);
+
+
+% --------------------------------------------------------------------
+function impulseTestMI_Callback(hObject, eventdata, handles)
+% hObject    handle to impulseTestMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    generateImpulse(handles);
+
+% --------------------------------------------------------------------
+function squareTestMI_Callback(hObject, eventdata, handles)
+% hObject    handle to squareTestMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    generateSquareWave(handles);
+
+% --------------------------------------------------------------------
+function whiteNoiseTestMI_Callback(hObject, eventdata, handles)
+% hObject    handle to whiteNoiseTestMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    generateWhiteNoise(handles);
+
+
+% --------------------------------------------------------------------
+function ldvwImport_Callback(hObject, eventdata, handles)
+% hObject    handle to ldvwImport (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    ldvwImport(handles);

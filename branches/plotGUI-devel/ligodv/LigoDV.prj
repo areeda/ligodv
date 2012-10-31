@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="569352703">
+  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="3767760113">
     <param.appname>LigoDV</param.appname>
     <param.authnamewatermark>Joseph Areeda, Joshua Smith</param.authnamewatermark>
-    <param.email />
-    <param.company />
+    <param.email>ligodv@rt.phys.uwm.edu</param.email>
+    <param.company>California State University at Fullerton</param.company>
     <param.icon />
     <param.summary>Ligo Data Viewer.  Fast, easy plotting and analysis of channel data via network servers.</param.summary>
     <param.description />
@@ -26,8 +26,6 @@
     <param.output>/home/joe/ligo/LigoDV.mlappinstall</param.output>
     <param.guid>6b8493cb-0b7d-4006-ad73-3d37777a6fb7</param.guid>
     <unset>
-      <param.email />
-      <param.company />
       <param.icon />
       <param.description />
       <param.screenshot />
@@ -49,6 +47,7 @@
       <file>${PROJECT_ROOT}/functions/DataTransfer/NDS2_JGetChannels.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/NDS2_JGetData.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/TransProgbarSetup.m</file>
+      <file>${PROJECT_ROOT}/functions/DataTransfer/addToDataPool.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/chanFilter.fig</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/chanFilter.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/ldv_dobjsunique.m</file>
@@ -63,6 +62,7 @@
       <file>${PROJECT_ROOT}/functions/DataTransfer/ldv_getport.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/ldv_getselectionbox.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/ldv_getserver.m</file>
+      <file>${PROJECT_ROOT}/functions/DataTransfer/ldvwImport.m</file>
       <file>${PROJECT_ROOT}/functions/Filter/dv_filtersDLG.fig</file>
       <file>${PROJECT_ROOT}/functions/Filter/dv_filtersDLG.m</file>
       <file>${PROJECT_ROOT}/functions/Filter/dv_freqsDLG.fig</file>
@@ -108,6 +108,7 @@
       <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_fcache2ffl.m</file>
       <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_ffSetNfiles.m</file>
       <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_ff_getframedir.m</file>
+      <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_ff_getlatest.m</file>
       <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_ff_setframedir.m</file>
       <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_ffl2fcache.m</file>
       <file>${PROJECT_ROOT}/functions/FrameFileSupport/dv_queryCache.m</file>
@@ -250,9 +251,14 @@
       <file>${PROJECT_ROOT}/functions/Unclassified/tdlg_timeselect.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/tdlg_utcstart.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/tdlg_utcstop.m</file>
-      <file>${PROJECT_ROOT}/functions/dv_ff_getlatest.m</file>
       <file>${PROJECT_ROOT}/ldvparams.m</file>
       <file>${PROJECT_ROOT}/ligoDV.fig</file>
+      <file>${PROJECT_ROOT}/plotGUI/spectrogramParam.fig</file>
+      <file>${PROJECT_ROOT}/plotGUI/spectrogramParam.m</file>
+      <file>${PROJECT_ROOT}/plotGUI/spectrumParam.fig</file>
+      <file>${PROJECT_ROOT}/plotGUI/spectrumParam.m</file>
+      <file>${PROJECT_ROOT}/plotGUI/timeSeriesParam.fig</file>
+      <file>${PROJECT_ROOT}/plotGUI/timeSeriesParam.m</file>
     </fileset.depfun>
     <fileset.resources />
     <fileset.package />

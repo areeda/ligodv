@@ -30,7 +30,7 @@ function ldvwImport( handles )
             end
             addToDataPool(handles, newObjs);
         catch ex
-            sprintf("Error importing: %s\n",ex.message);
+            sprintf('Error importing: %s\n',ex.message);
         end
         drawnow;
         set(gcf,'Pointer','arrow');

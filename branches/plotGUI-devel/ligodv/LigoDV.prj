@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="3767760113">
+  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="1467986322">
     <param.appname>LigoDV</param.appname>
     <param.authnamewatermark>Joseph Areeda, Joshua Smith</param.authnamewatermark>
     <param.email>ligodv@rt.phys.uwm.edu</param.email>
     <param.company>California State University at Fullerton</param.company>
     <param.icon />
     <param.summary>Ligo Data Viewer.  Fast, easy plotting and analysis of channel data via network servers.</param.summary>
-    <param.description />
+    <param.description>Home page with complete description and operating instructions is https://wiki.ligo.org/foswiki/bin/view/LDG/DASWG/LigoDV</param.description>
     <param.screenshot />
     <param.version>1.14.0.8</param.version>
     <param.products.name>
@@ -27,7 +27,6 @@
     <param.guid>6b8493cb-0b7d-4006-ad73-3d37777a6fb7</param.guid>
     <unset>
       <param.icon />
-      <param.description />
       <param.screenshot />
       <param.platforms />
     </unset>
@@ -42,11 +41,13 @@
       <file>${PROJECT_ROOT}/classes/Help_Update/Help.m</file>
       <file>${PROJECT_ROOT}/classes/Help_Update/UpdtDlg.fig</file>
       <file>${PROJECT_ROOT}/classes/Help_Update/UpdtDlg.m</file>
+      <file>${PROJECT_ROOT}/classes/ImportExport/DataObject.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/ChannelType.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/DataType.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/NDS2_JGetChannels.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/NDS2_JGetData.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/TransProgbarSetup.m</file>
+      <file>${PROJECT_ROOT}/functions/DataTransfer/add1toDataPool.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/addToDataPool.m</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/chanFilter.fig</file>
       <file>${PROJECT_ROOT}/functions/DataTransfer/chanFilter.m</file>
@@ -131,6 +132,11 @@
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_highpass.m</file>
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_lowpass.m</file>
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_mkwhiteningfilter.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateImpulse.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateSawtooth.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateSinglesine.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateSquareWave.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateWhiteNoise.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/dv_dobjcompare.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/dv_duplicatedobjs.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/dv_exportdobjs.m</file>
@@ -251,6 +257,17 @@
       <file>${PROJECT_ROOT}/functions/Unclassified/tdlg_timeselect.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/tdlg_utcstart.m</file>
       <file>${PROJECT_ROOT}/functions/Unclassified/tdlg_utcstop.m</file>
+      <file>${PROJECT_ROOT}/jars/.svn/all-wcprops</file>
+      <file>${PROJECT_ROOT}/jars/.svn/entries</file>
+      <file>${PROJECT_ROOT}/jars/.svn/prop-base/LdvJUtils.jar.svn-base</file>
+      <file>${PROJECT_ROOT}/jars/.svn/prop-base/OdcPlot.jar.svn-base</file>
+      <file>${PROJECT_ROOT}/jars/.svn/prop-base/commons-cli-1.1.jar.svn-base</file>
+      <file>${PROJECT_ROOT}/jars/.svn/text-base/LdvJUtils.jar.svn-base</file>
+      <file>${PROJECT_ROOT}/jars/.svn/text-base/OdcPlot.jar.svn-base</file>
+      <file>${PROJECT_ROOT}/jars/.svn/text-base/commons-cli-1.1.jar.svn-base</file>
+      <file>${PROJECT_ROOT}/jars/LdvJUtils.jar</file>
+      <file>${PROJECT_ROOT}/jars/OdcPlot.jar</file>
+      <file>${PROJECT_ROOT}/jars/commons-cli-1.1.jar</file>
       <file>${PROJECT_ROOT}/ldvparams.m</file>
       <file>${PROJECT_ROOT}/ligoDV.fig</file>
       <file>${PROJECT_ROOT}/plotGUI/spectrogramParam.fig</file>
@@ -260,7 +277,9 @@
       <file>${PROJECT_ROOT}/plotGUI/timeSeriesParam.fig</file>
       <file>${PROJECT_ROOT}/plotGUI/timeSeriesParam.m</file>
     </fileset.depfun>
-    <fileset.resources />
+    <fileset.resources>
+      <file>${PROJECT_ROOT}/jars</file>
+    </fileset.resources>
     <fileset.package />
     <build-deliverables>
       <file name="LigoDV.mlappinstall" location="/home/joe/ligo" optional="false">/home/joe/ligo/LigoDV.mlappinstall</file>

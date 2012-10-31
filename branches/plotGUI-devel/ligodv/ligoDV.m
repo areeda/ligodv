@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 27-Oct-2012 08:05:26
+% Last Modified by GUIDE v2.5 30-Oct-2012 22:00:35
 
 %%
 function varargout = ligoDV(varargin)
@@ -3567,3 +3567,11 @@ function ldvwImport_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     ldvwImport(handles);
     drawnow;
+
+
+% --------------------------------------------------------------------
+function gaussianMI_Callback(hObject, eventdata, handles)
+% hObject    handle to gaussianMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    generateGaussianNoise(handles);

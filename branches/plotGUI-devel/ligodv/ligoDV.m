@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 30-Oct-2012 22:00:35
+% Last Modified by GUIDE v2.5 01-Nov-2012 07:41:12
 
 %%
 function varargout = ligoDV(varargin)
@@ -3575,3 +3575,11 @@ function gaussianMI_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     generateGaussianNoise(handles);
+
+
+% --------------------------------------------------------------------
+function tst_data_Callback(hObject, eventdata, handles)
+% hObject    handle to tst_data (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    testData(handles);

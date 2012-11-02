@@ -29,6 +29,12 @@ if detrend
   csy = ldv_detrend(csy);  
 end
 
+% use zero bins to mean pick a good default value
+if (bins==0)
+    l = length(csy);
+    bins = sqrt(l);
+    bins= floor(bins);  % make sure it's an integer
+end
 % histogram
 
 [n,x] = hist(csy, bins);

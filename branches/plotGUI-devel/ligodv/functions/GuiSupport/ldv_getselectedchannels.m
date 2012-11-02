@@ -17,7 +17,7 @@ else
 
     for i = 1:length(idx)
 
-        channels(i) = cellstr(deblank(regexprep(list(idx(i),:),'\((\w*)\)','')));
+        channels(i) = cellstr(deblank(regexprep(list(idx(i),:),'\(([ \w]*)\)','')));
 
     end
 

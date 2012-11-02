@@ -31,6 +31,7 @@ binsStr = get(handles.plotHistogramBins, 'String');
 binsCmd = sprintf('bins = %s;', binsStr);
 eval(binsCmd);
 
+
 % get outlier limits
 outlier = getOutliers(handles);
 

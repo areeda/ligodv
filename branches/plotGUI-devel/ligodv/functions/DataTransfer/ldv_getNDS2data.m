@@ -23,7 +23,8 @@ function [x,fs]  = ldv_getNDS2data(dtype, server, port,...
     switch dtype
 
         case 'raw data'
-            channel = [channel ',raw'];
+            % looks like we're not supposed to set raw as a channel type
+            %channel = [channel ',raw'];
             
         case 'minute trends'
             channel = [channel,',m-trend'];

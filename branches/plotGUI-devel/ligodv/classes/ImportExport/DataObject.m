@@ -91,8 +91,11 @@ classdef DataObject < handle
         function ts = getTimeSeries(this)
             d = this.getDuration();
             nsamp = d * this.getFs();
-            t = [0:nsamp] / fs + this.getStart();
-            ts = [t;this.getX()];
+            t = [1:nsamp] / this.getFs() + this.getStart();
+            x = this.getX();
+            ts = zeros(nsamp,2);
+            ts(:,1) = t';
+            ts(:,2) = x;
         end
         
         function setFs(this,f)
@@ -129,7 +132,7 @@ classdef DataObject < handle
             this.includingPrime = obj.data.includingPrime;
             
             this.heterodyneOn = obj.preproc.heterodyneOn;
-            this.resample = obj.preproc.resample.R;
+            this.resampleFactor = obj.preproc.resample.R;
             this.whitening = obj.preproc.whitening;
             this.mathString = obj.preproc.math.cmd;
             this.f0 = obj.preproc.f0;

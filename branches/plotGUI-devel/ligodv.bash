@@ -108,7 +108,7 @@ if [ $err -eq 0 ]; then
 	fi
   
 	# finally we get to start it
-   	$MATLAB -r ligoDV 2>&1 | grep -v "exclude an item from Time Machine"
+   	$MATLAB -r ligoDV_start 2>&1 | grep -v "exclude an item from Time Machine"
 else
   echo "Problem detected."
   echo "Please resolve and try again"

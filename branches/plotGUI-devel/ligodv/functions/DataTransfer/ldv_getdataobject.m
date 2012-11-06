@@ -9,7 +9,7 @@ function ldv_getdataobject(handles)
     % first see if there's anything to do
     channels = ldv_getselectedchannels(handles);
     if (isempty(channels))
-        msgbox('Channel list is empty or none selected.', 'Get Data Error', 'error');
+        ldvMsgbox('Channel list is empty or none selected.', 'Get Data Error', 'error');
     else
         % get the data retrieval mode
         dvmode = ldv_getselectionbox(handles.dvmode);

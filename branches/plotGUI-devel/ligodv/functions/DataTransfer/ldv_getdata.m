@@ -210,7 +210,7 @@ function dobjs = ldv_getdata(varargin)
                 ermsg, goodDataMsg)];
         end
         disp(ermsg);
-        msgbox(ermsg,'Problem(s) getting data','warn');
+        ldvMsgbox(ermsg,'Problem(s) getting data','warn');
     end
     drawnow();      % update the Data pool window.
     progBar.done();  % close the progress bar dialog

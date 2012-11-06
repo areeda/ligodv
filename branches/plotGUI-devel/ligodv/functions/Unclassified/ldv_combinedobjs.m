@@ -64,7 +64,8 @@ else
     end
 
     % combine objects using math
-    eval(sprintf('combdobjs.objs(combdobjs.nobjs).data.x=%s;', mathstrrep));
+    mathExp = sprintf('combdobjs.objs(combdobjs.nobjs).data.x=%s;', mathstrrep);
+    eval(mathExp);
 
     % make new channel name
     combdobjs.objs(combdobjs.nobjs).channel = [mathstr];

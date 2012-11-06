@@ -40,7 +40,7 @@ classdef Preferences < handle
             if this.valid > 0
                 PrefDlg();
             else
-                msgbox('Preferences unavailable','Preferences error','error');
+                ldvMsgbox('Preferences unavailable','Preferences error','error');
             end
         end
         
@@ -155,7 +155,7 @@ classdef Preferences < handle
                 d = [ homeDrive  homePath];
             end
             % Avoid double //'s for brain dead file systems
-            r=regexp(d,'/$');
+            r=regexp(d,'/$', 'once');
             if (isempty(r) )
                 d = [ d '/' ];
             end
@@ -167,7 +167,7 @@ classdef Preferences < handle
                 [stat, mesg] = mkdir(this.saveDir);
                 if stat ~= 1
                     m = ['Error creating "' this.saveDir '" ' mesg ' No preferences available.'];
-                    msgbox(m,'Creating Preferences Directory','error');
+                    ldvMsgbox(m,'Creating Preferences Directory','error');
                 else
                     this.valid = 1;
                 end
@@ -176,7 +176,7 @@ classdef Preferences < handle
                 m = 'Something other than a folder conflicts with our preferences directory: ';
                 m = [m this.saveDir '.  Preferences will be unavailable.'];
 
-                msgbox(m,'Creating Preferences Directory','error');
+                ldvMsgbox(m,'Creating Preferences Directory','error');
             else
                 % directory already exists we're good
                 this.valid = 1;

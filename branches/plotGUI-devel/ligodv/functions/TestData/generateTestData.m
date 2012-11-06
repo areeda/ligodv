@@ -13,6 +13,11 @@ function generateTestData( handles )
     
     name='oops';
     % generate specified data
+    if (get(handles.bfreqRB,'Value'))
+        x = generateBlurrySine(param);
+        name='Blurry Frequency';
+    end
+    
     if (get(handles.gaussRB,'Value'))
         x = generateGaussianNoise(param);
         name='Gaussian_noise';
@@ -31,6 +36,11 @@ function generateTestData( handles )
     if (get(handles.sineRB,'Value'))
         x = generateSine(param);
         name = 'Sine';
+    end
+    
+    if (get(handles.sineDecayRB,'Value'))
+        x = generateDampedSine(param);
+        name = 'Damped Sine';
     end
     
     if (get(handles.squareWaveRB,'Value'))

@@ -105,8 +105,7 @@ switch dvmode
                 'If ligoDV has worked before this is probably due to an expired Kerberos ticket\n',...
                 'But may be any number of network, Internet or configuration problems');
             
-            mb = msgbox(ermsg,'Problem getting channel list','warn');
-            waitfor(mb);
+            ldvMsgbox(ermsg,'Problem getting channel list','warn');
             error(ermsg);
         end
         

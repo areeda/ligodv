@@ -78,14 +78,14 @@ function plotPB_Callback(hObject, eventdata, handles)
 % hObject    handle to plotPB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on button press in queuePB.
 function queuePB_Callback(hObject, eventdata, handles)
 % hObject    handle to queuePB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on button press in cancelPB.
 function cancelPB_Callback(hObject, eventdata, handles)
@@ -99,14 +99,14 @@ function savePB_Callback(hObject, eventdata, handles)
 % hObject    handle to savePB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on button press in setDefaultPB.
 function setDefaultPB_Callback(hObject, eventdata, handles)
 % hObject    handle to setDefaultPB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on selection change in selconfigPM.
 function selconfigPM_Callback(hObject, eventdata, handles)

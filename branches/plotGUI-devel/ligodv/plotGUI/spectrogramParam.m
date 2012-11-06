@@ -247,14 +247,14 @@ function plotBtn_Callback(hObject, eventdata, handles)
 % hObject    handle to plotBtn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on button press in queueBtn.
 function queueBtn_Callback(hObject, eventdata, handles)
 % hObject    handle to queueBtn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on button press in cancelBtn.
 function cancelBtn_Callback(hObject, eventdata, handles)
@@ -268,14 +268,14 @@ function saveBtn_Callback(hObject, eventdata, handles)
 % hObject    handle to saveBtn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on button press in setDefaultBtn.
 function setDefaultBtn_Callback(hObject, eventdata, handles)
 % hObject    handle to setDefaultBtn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 % --- Executes on selection change in loadconfigMenu.
 function loadconfigMenu_Callback(hObject, eventdata, handles)
@@ -305,7 +305,7 @@ function helpBtn_Callback(hObject, eventdata, handles)
 % hObject    handle to helpBtn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    uiwait(msgbox('Function not implemented yet','You are dreaming','modal'));
+    ldvMsgbox('Function not implemented yet','You are dreaming');
 
 
 function outlierTxt_Callback(hObject, eventdata, handles)

@@ -69,21 +69,18 @@ classdef Help < handle
                 stat = Help.isNewer(webVer,curVersion);
                 switch stat
                     case -2
-                        mb = msgbox('Problem parsing version strings. Please file a bug report', ...
+                        ldvMsgbox('Problem parsing version strings. Please file a bug report', ...
                             'No update available');
-                            waitfor(mb);
                     case -1
                         if (~bequiet)
                             msg = sprintf('Your version (%s) is newer than what is available (%s)', ...
                                 curVersion, webVer);
-                            mb = msgbox(msg,'No update available');
-                            waitfor(mb);
+                            ldvMsgbox(msg,'No update available');
                         end
                     case 0
                         if (~bequiet)
                             msg = sprintf('You have the current version (%s)',curVersion);
-                            mb = msgbox(msg, 'No update available');
-                            waitfor(mb);
+                            ldvMsgbox(msg, 'No update available');
                         end
                     case 1
                         

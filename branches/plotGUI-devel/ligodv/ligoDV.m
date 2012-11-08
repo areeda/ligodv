@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 01-Nov-2012 07:41:12
+% Last Modified by GUIDE v2.5 08-Nov-2012 06:27:23
 
 %%
 function varargout = ligoDV(varargin)
@@ -3583,3 +3583,15 @@ function tst_data_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     testData(handles);
+
+
+% --------------------------------------------------------------------
+function closeFigs_Callback(hObject, eventdata, handles)
+% hObject    handle to closeFigs (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% close only the plots created not the gui
+    set(handles.main,'HandleVisibility','off')
+    close all;
+    set(handles.main,'HandleVisibility','on')
+    

@@ -5,10 +5,11 @@ function x = generateGaussianNoise( param )
 
     npts = param.nPts;
     
-    u = rand(npts,1);
-    v = rand(npts,1);
+    u = rand(1,npts);
+    v = rand(1,npts);
     x = sqrt(-2 * log(u)) .* cos(2 * pi * v);
     y = sqrt(-2 * log(u)) .* sin(2 * pi * v);
     x = (x + y) / 8;
+    
 end
 

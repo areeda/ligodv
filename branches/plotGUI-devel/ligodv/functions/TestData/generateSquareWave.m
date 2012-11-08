@@ -7,7 +7,7 @@ function x = generateSquareWave( param )
         if (x(i) > 0)
             x(i) = 1;
         else
-            x(i) = -1;
+            x(i) = 0;
         end
     end
     

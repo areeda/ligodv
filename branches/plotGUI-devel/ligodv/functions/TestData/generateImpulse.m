@@ -4,7 +4,7 @@ function x = generateImpulse( param )
 
     npts = param.nPts; %number of data points
     
-    x = zeros(npts,1);
+    x = zeros(1,npts);
     x(npts/2) = 1024;
     
 end

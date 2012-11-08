@@ -13,9 +13,9 @@ function generateTestData( handles )
     
     name='oops';
     % generate specified data
-    if (get(handles.bfreqRB,'Value'))
-        x = generateBlurrySine(param);
-        name='Blurry Frequency';
+    if (get(handles.chirpRB,'Value'))
+        x = generateChirp(param);
+        name='Chirp';
     end
     
     if (get(handles.gaussRB,'Value'))

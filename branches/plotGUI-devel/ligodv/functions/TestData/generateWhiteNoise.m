@@ -4,7 +4,7 @@ function x = generateWhiteNoise( param )
     
     npts = param.nPts;
     
-    x = rand(npts,1);
+    x = rand(1,npts);
     
 end
 

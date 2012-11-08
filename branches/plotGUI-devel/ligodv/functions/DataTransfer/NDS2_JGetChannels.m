@@ -155,10 +155,13 @@ function chanlist = NDS2_JGetChannels(server, varargin)
         if (ctype == ChannelType.CHANNEL_TYPE_MTREND || chtype == ChannelType.CHANNEL_TYPE_STREND)
             % save only one channel for trends
             p=strfind(name,'.');
-            
-            ttype = name(p+1:length(name));
-            name = name(1:p-1);
-            doit = strcmpi(ttype,'mean');
+            doit=0;
+            if (~isempty(p) && length(p) == 1)
+                ttype = name(p+1:length(name));
+                name = name(1:p-1);
+                q = strfind(ttype,'mean');
+                doit = ~isempty(q) && length(q) == 1;
+            end
         end
         if (doit)
             chanlist(k1) = struct ( ...
@@ -180,6 +183,7 @@ function chanlist = NDS2_JGetChannels(server, varargin)
         if (rem(k,10000) == 0)
             eTime = (now-start)*24*3600;
             disp(sprintf('%d channels processed %.2f sec',k,eTime));
+        end
     end
     
 end

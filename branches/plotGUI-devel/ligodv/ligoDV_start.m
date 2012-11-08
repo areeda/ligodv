@@ -2,7 +2,7 @@ function ligoDV_start()
 %% LigoDv startup script
 % set paths for java scripts and .m files
 global ranLdvStartup;
-    if ~exist('ranLdvStartup','var')
+    if ~strcmpi(ranLdvStartup,'yes')
 
 
         % add paths to all our subdirectories

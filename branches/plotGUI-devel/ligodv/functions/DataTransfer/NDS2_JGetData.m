@@ -68,7 +68,10 @@ function [datalist, wantsToCancel] = NDS2_JGetData(namelist, start, duration, ..
             if bufn == 1
                 % create the structure on the first buffer
                 sampleRate=chan.getSampleRate;
-                dataSize=sampleRate*duration;
+                if (sampleRate > 0.0166 && sampleRate < 0.0168)
+                    sampleRate=1/60; % minute trends need more accuracy to calculate # pnts
+                end
+                dataSize=round(sampleRate*duration);
                 data = ...
                 struct(...
                     'name', chan.getName, ...
@@ -94,13 +97,13 @@ function [datalist, wantsToCancel] = NDS2_JGetData(namelist, start, duration, ..
             progBar.bumpCurTally(dt);
             data.data(inp:inp+nd-1)=d;
             inp = inp + nd;
+            bufn = bufn+1;
         end       
     end
     if wantsToCancel
         datalist = 'canceled';
         canceled = true;
     else
-        data.data = d;
-        datalist(b)=data;
+        datalist=data;
     end
 end

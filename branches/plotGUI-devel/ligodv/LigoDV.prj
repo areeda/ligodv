@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="1798222666">
+  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="2550765649">
     <param.appname>LigoDV</param.appname>
     <param.authnamewatermark>Joseph Areeda, Joshua Smith</param.authnamewatermark>
     <param.email>ligodv@rt.phys.uwm.edu</param.email>
@@ -11,20 +11,20 @@
     <param.screenshot />
     <param.version>1.14.0.8</param.version>
     <param.products.name>
-      <item>MATLAB</item>
       <item>Signal Processing Toolbox</item>
+      <item>MATLAB</item>
     </param.products.name>
     <param.products.id>
-      <item>1</item>
       <item>8</item>
+      <item>1</item>
     </param.products.id>
     <param.products.version>
-      <item>8.0</item>
       <item>6.18</item>
+      <item>8.0</item>
     </param.products.version>
     <param.platforms />
     <param.output>/home/joe/ligo/LigoDV.mlappinstall</param.output>
-    <param.guid>e52cacae-79cd-4a36-8aaa-7b080ef0b447</param.guid>
+    <param.guid>5c728f95-3890-4f4a-909d-93593846fa6b</param.guid>
     <unset>
       <param.icon />
       <param.screenshot />
@@ -132,7 +132,7 @@
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_highpass.m</file>
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_lowpass.m</file>
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_mkwhiteningfilter.m</file>
-      <file>${PROJECT_ROOT}/functions/TestData/generateBlurrySine.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateChirp.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateDampedSine.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateGaussianNoise.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateImpulse.m</file>

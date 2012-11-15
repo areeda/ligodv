@@ -45,10 +45,6 @@ set(handles.gd_calversion, 'TooltipString', tip);
 tip = sprintf('Select the statistic for trend data.');
 set(handles.gd_stat, 'TooltipString', tip);
 
-% query server
-tip = sprintf('Get a list of channels from the server.');
-set(handles.gd_queryServerBtn, 'TooltipString', tip);
-
 % LIGO LDR Server
 
 

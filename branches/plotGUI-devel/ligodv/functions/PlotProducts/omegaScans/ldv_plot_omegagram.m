@@ -31,7 +31,7 @@ params.aspectRatio = str2num(get(handles.plotOmegagramAspectRatio, 'String'));
 logy = get(handles.plotOmegagramLogY, 'Value');
 
 % use whitening from aux data
-omegaNorm = get(handles.plotOmegagramNormMenu, 'Value');
+omegaNorm = get(handles.plotOmegagramNormMenu, 'Value');    
 
 % plot SNR instead of amplitudes
 if omegaNorm == 2

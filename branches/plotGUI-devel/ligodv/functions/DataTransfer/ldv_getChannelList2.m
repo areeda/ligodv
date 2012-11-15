@@ -38,19 +38,21 @@ function ldv_getChannelList2(handles,srchParams)
 
     end
     try
+        set(0,'DefaultFigurePointer','watch');
         channels = NDS2_JGetChannels(serverstring,nds2dtype,-1,srchParams);
         %set(channels, 'Timeout', 5);
     catch e
         ermsg = e.message;
         ermsg = {ermsg,' ',...
-            'If ligoDV has worked before this is probably due to an expired Kerberos ticket',...
+            'If ligoDV has worked before this is may be due to an expired Kerberos ticket',...
             ' ',...
             'But it could also be any number of network, Internet or configuration problems'};
 
         ldvMsgbox(ermsg,'Problem getting channel list','warn');
         fprintf(['Error searching channels ' e.message '\n']);
+        watchoff;
     end
-
+    
     % channels is a struct array with fields:
     % name
     % chan_type
@@ -100,9 +102,11 @@ function ldv_getChannelList2(handles,srchParams)
             set(handles.channelList, 'String', channels);
             set(handles.channelList, 'Value', 1);
         else
+            watchoff;
             ldvMsgbox('Search did not return any matches.', ...
                             'No channels');
         end
     end
+    watchoff;
 end
 

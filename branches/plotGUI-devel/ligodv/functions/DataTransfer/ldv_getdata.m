@@ -117,7 +117,6 @@ function dobjs = ldv_getdata(varargin)
             x=[];   % just is 
             fs=0;
             try
-               % transProgSetTime(time,ch,params,progBar);
                 [x,fs,preproc,unitX,unitY] = ldv_getchanneldata(params, handles,progBar);
             catch e
                 % we're in an inner loop just record the error and display

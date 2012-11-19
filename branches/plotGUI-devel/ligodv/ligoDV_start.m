@@ -43,7 +43,7 @@ global ranLdvStartup;
         nds2Path = getenv('NDS2_LOCATION');
         comp = computer;        % some paths vary depending on OS
 
-        ndsJarPath='';
+        ndsPath='';
         ndsErr=0;
         ermsg = '';
 
@@ -51,15 +51,15 @@ global ranLdvStartup;
         % determine if the paths have been set correctly but is not complete enough
         % to validate the whole NDS/NDS2 installation
         if (~isempty(nds2Path))
-            ndsJarPath = strcat(nds2Path,'/lib/nds.jar');
-            if (exist(ndsJarPath,'file') ~= 2)
+            ndsPath = strcat(nds2Path,'/lib/java');
+            if (exist(ndsPath,'dir') ~= 7)
                 ermsg = sprintf('\nSWIG-Java bindings, nds.jar, not found\n\n%s\n',...
                     'If you continue you will not have access to remote data');
                 ndsErr=1;
             end
         end
 
-        if (isempty(ndsJarPath))
+        if (isempty(ndsPath))
             % we didn't get nds module from the envirnment
             dname=getHomeDir();
             jarpath='';
@@ -71,15 +71,15 @@ global ranLdvStartup;
 
                 if (exist(ndspathfile,'file'))
                     fileid = fopen(ndspathfile,'r');
-                    ndsJarPath=textscan(fileid,'%s');
-                    ndsJarPath = char(ndsJarPath{1});
+                    ndsPath=textscan(fileid,'%s');
+                    ndsPath = char(ndsPath{1});
                     fclose(fileid);
-                    if (~exist(ndsJarPath,'file'))
+                    if (~exist(ndsPath,'dir'))
                         delete(ndspathfile);
-                        ndsJarPath='';
+                        ndsPath='';
                     end
                 end
-                if (isempty(ndsJarPath) || ~exist(ndsJarPath,'file'))
+                if (isempty(ndsPath) || ~exist(ndsPath,'dir'))
                     % we don't have it let's see if they can find it
                     ermsg = ['The class library nds.jar was not found.', '', ...
                         'Without it we cannot get channel lists or transfer channel data', ...
@@ -88,19 +88,19 @@ global ranLdvStartup;
                     if (strcmp(answer,'Exit'))
                         error(ermsg);
                     elseif (strcmp(answer,'Browse'))
-                         [f, p] = uigetfile('nds.jar','Specify NDS interface file (nds.jar)');
-                         if length(f) > 1 && length(p) > 1
-                             ndsJarPath=[p f];
+                         ndsPath = uigetdir('java','Specify the Java directory in the NDS2 installation (.../lib/java');
+                         if length(ndsPath) > 1
+                             
                              % save it so we don't have to ask again
                              fileid = fopen(ndspathfile,'w');
-                             fprintf(fileid,'%s\n',jarpath);
+                             fprintf(fileid,'%s\n',ndsPath);
                              fclose(fileid);
                          end
                     end
                 end
             end
-            if ~isempty(ndsJarPath)
-                javaaddpath(ndsJarPath);
+            if ~isempty(ndsPath)
+                javaaddpath(ndsPath);
             else
                 ldvMsgbox('NDS bindigs are not available, you may not be able to pull data', ...
                 'NDS not found');

@@ -38,7 +38,7 @@ function ldv_getChannelList2(handles,srchParams)
 
     end
     try
-        set(0,'DefaultFigurePointer','watch');
+        watchon;
         channels = NDS2_JGetChannels(serverstring,nds2dtype,-1,srchParams);
         %set(channels, 'Timeout', 5);
     catch e

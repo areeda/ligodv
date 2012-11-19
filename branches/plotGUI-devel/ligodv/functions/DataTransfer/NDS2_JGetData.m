@@ -51,7 +51,7 @@ function [datalist, wantsToCancel] = NDS2_JGetData(namelist, start, duration, ..
         port=str2double(server(p+1:length(server)));
     end
     
-    conn=nds.connection(srv,port);
+    conn=nds2.connection(srv,port);
     conn.iterate(start, start+duration, namelist);
     t=start;
     wantsToCancel = false;

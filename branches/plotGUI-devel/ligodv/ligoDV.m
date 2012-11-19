@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 08-Nov-2012 06:27:23
+% Last Modified by GUIDE v2.5 15-Nov-2012 15:29:21
 
 %%
 function varargout = ligoDV(varargin)
@@ -101,6 +101,7 @@ clockTimer=timer('Name','clockTimer', ...
     'BusyMode', 'drop', 'Period',1,'StartDelay',3, 'ExecutionMode', 'fixedRate');
 clockTimer.TimerFcn = @updtCurTime;
 start(clockTimer);
+set(gcf, 'Pointer', 'arrow');
 
 
 
@@ -3595,3 +3596,11 @@ function closeFigs_Callback(hObject, eventdata, handles)
     close all;
     set(handles.main,'HandleVisibility','on')
     
+
+
+% --- Executes on button press in playBtn.
+function playBtn_Callback(hObject, eventdata, handles)
+% hObject    handle to playBtn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    PlayDataAsSound(handles);

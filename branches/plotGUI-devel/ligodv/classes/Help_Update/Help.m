@@ -60,53 +60,58 @@ classdef Help < handle
                             % an automatic check so don't do anything
             end
             
-            verStr=urlread(Help.versionText);
-            [id, remain] = strtok(verStr);
-            
-            
-            if strcmp(id,'%lidgodv_version%')
-                [webVer, remain] = strtok(remain);
-                stat = Help.isNewer(webVer,curVersion);
-                switch stat
-                    case -2
-                        ldvMsgbox('Problem parsing version strings. Please file a bug report', ...
-                            'No update available');
-                    case -1
-                        if (~bequiet)
-                            msg = sprintf('Your version (%s) is newer than what is available (%s)', ...
-                                curVersion, webVer);
-                            ldvMsgbox(msg,'No update available');
-                        end
-                    case 0
-                        if (~bequiet)
-                            msg = sprintf('You have the current version (%s)',curVersion);
-                            ldvMsgbox(msg, 'No update available');
-                        end
-                    case 1
-                        
-                        [date, remain] = strtok(remain);
-                        [url, remain] = strtok(remain);
-                        updtdlg = UpdtDlg();
-                        c=get(updtdlg,'Children');
-                        for i=1:length(c)
-                            t=get(c(i),'Tag');
-                            switch t
-                                case 'newVersionStr'
-                                    set(c(i),'String', webVer);
-                                case 'cautionStr'
-                                    r = Help.parseVersion(webVer);
-                                    if (r{1}{3} > 0)
-                                        set(c(i),'String', 'Caution pre-release version');
-                                    else
-                                        set(c(i),'String', 'Recommended update');
-                                    end
-                                case 'curVersionStr'
-                                    set(c(i),'String', curVersion);
+            try
+                verStr=urlread(Help.versionText);
+                [id, remain] = strtok(verStr);
+
+
+                if strcmp(id,'%lidgodv_version%')
+                    [webVer, remain] = strtok(remain);
+                    stat = Help.isNewer(webVer,curVersion);
+                    switch stat
+                        case -2
+                            ldvMsgbox('Problem parsing version strings. Please file a bug report', ...
+                                'No update available');
+                        case -1
+                            if (~bequiet)
+                                msg = sprintf('Your version (%s) is newer than what is available (%s)', ...
+                                    curVersion, webVer);
+                                ldvMsgbox(msg,'No update available');
                             end
-                        end
-                        waitfor(updtdlg);
+                        case 0
+                            if (~bequiet)
+                                msg = sprintf('You have the current version (%s)',curVersion);
+                                ldvMsgbox(msg, 'No update available');
+                            end
+                        case 1
+
+                            [date, remain] = strtok(remain);
+                            [url, remain] = strtok(remain);
+                            updtdlg = UpdtDlg();
+                            c=get(updtdlg,'Children');
+                            for i=1:length(c)
+                                t=get(c(i),'Tag');
+                                switch t
+                                    case 'newVersionStr'
+                                        set(c(i),'String', webVer);
+                                    case 'cautionStr'
+                                        r = Help.parseVersion(webVer);
+                                        if (r{1}{3} > 0)
+                                            set(c(i),'String', 'Caution pre-release version');
+                                        else
+                                            set(c(i),'String', 'Recommended update');
+                                        end
+                                    case 'curVersionStr'
+                                        set(c(i),'String', curVersion);
+                                end
+                            end
+                            waitfor(updtdlg);
+                    end
+                else
+                    ed = errordlg('Problem getting current version from web','Latest version unknown');
+                    waitfor(ed);
                 end
-            else
+            catch e
                 ed = errordlg('Problem getting current version from web','Latest version unknown');
                 waitfor(ed);
             end

@@ -16,7 +16,7 @@ function ldvwImport( handles )
     [filename, pathname] = uigetfile('ldvw_export*.m', 'LDVW export file');
     if ~(isequal(filename,0)|isequal(pathname,0))
         
-        set(gcf,'Pointer','watch');
+        watchon;
         try
             [fileDir,script,ext] = fileparts(filename);
             cd (pathname);
@@ -33,7 +33,7 @@ function ldvwImport( handles )
             sprintf('Error importing: %s\n',ex.message);
         end
         drawnow;
-        set(gcf,'Pointer','arrow');
+        watchoff;
     end
     importDirectory=pwd;
     

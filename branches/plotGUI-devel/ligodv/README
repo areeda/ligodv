@@ -4,3 +4,11 @@ Please see the ligoDV project homepage for installation instructions, and docume
 
 https://wiki.ligo.org/LDG/DASWG/LigoDV
 
+This is the main directory, the subdirectories are organized into logical groups of functions and classes.
+Or at least they will be there are stil quite a few unclassified.
+
+The operation does not depend on the exact structure of the directories but they all must be underneath
+the one containing the ligodv_start function.
+
+The program is usually started by cd <this directory> && matlab -r ligodv_start
+

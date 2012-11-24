@@ -14,10 +14,11 @@ if (isempty(idx) ||  (length(list) == 1 && strcmp(list(1),'-')) )
     channels = {}; 
 else
     %% new method to remove sample rate form channel names 
-
+    
     for i = 1:length(idx)
-
-        channels(i) = cellstr(deblank(regexprep(list(idx(i),:),'\(([ \w]*)\)','')));
+        cname=list(idx(i),:);
+        cname1 = regexprep(cname,'\([\-\+\. \w]*)','');
+        channels(i) = cellstr(deblank(cname1));
 
     end
 

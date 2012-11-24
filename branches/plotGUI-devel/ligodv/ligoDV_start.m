@@ -52,17 +52,12 @@ global ranLdvStartup;
         % to validate the whole NDS/NDS2 installation
         if (~isempty(nds2Path))
             ndsPath = strcat(nds2Path,'/lib/java');
-            if (exist(ndsPath,'dir') ~= 7)
-                ermsg = sprintf('\nSWIG-Java bindings, nds.jar, not found\n\n%s\n',...
-                    'If you continue you will not have access to remote data');
-                ndsErr=1;
-            end
+            ndsPath = verifyNdsPath(ndsPath);
         end
 
         if (isempty(ndsPath))
-            % we didn't get nds module from the envirnment
+            % we didn't get nds module from the environment
             dname=getHomeDir();
-            jarpath='';
             if (isempty(dname))
                 ermsg = 'No home directory available';
             else
@@ -74,28 +69,33 @@ global ranLdvStartup;
                     ndsPath=textscan(fileid,'%s');
                     ndsPath = char(ndsPath{1});
                     fclose(fileid);
-                    if (~exist(ndsPath,'dir'))
+                    ndsPath = verifyNdsPath(ndsPath);
+                    if (isempty(ndsPath))
                         delete(ndspathfile);
-                        ndsPath='';
                     end
                 end
-                if (isempty(ndsPath) || ~exist(ndsPath,'dir'))
+                ndsPath = verifyNdsPath(ndsPath);
+                
+                while (isempty(ndsPath))
                     % we don't have it let's see if they can find it
-                    ermsg = ['The class library nds.jar was not found.', '', ...
-                        'Without it we cannot get channel lists or transfer channel data', ...
+                    ermsg = ['The Java interface classes were not found.  ', '', ...
+                        'Without it we cannot get channel lists or transfer channel data.  ', ...
                         ' ', 'You may continue and use other methods to get data.'];
                     answer = questdlg(ermsg,'NDS2 Not Found','Continue','Browse','Exit','Exit');
                     if (strcmp(answer,'Exit'))
                         error(ermsg);
                     elseif (strcmp(answer,'Browse'))
-                         ndsPath = uigetdir('java','Specify the Java directory in the NDS2 installation (.../lib/java');
-                         if length(ndsPath) > 1
-                             
+                         ndsPath = uigetdir('java','Specify the Java directory in the NDS2 installation (.../lib/java not lib/java/nds2');
+                         ndsPath = verifyNdsPath(ndsPath);
+                         if (~isempty(ndsPath))
                              % save it so we don't have to ask again
                              fileid = fopen(ndspathfile,'w');
                              fprintf(fileid,'%s\n',ndsPath);
                              fclose(fileid);
                          end
+                    elseif (strcmp(answer,'Continue'))
+                            ndsPath='';
+                        break;
                     end
                 end
             end
@@ -110,15 +110,28 @@ global ranLdvStartup;
         ranLdvStartup = 'yes';
     end
 
-    % check if we have a valid kerberos ticket
-    [status, result] = system('klist -s');
-    if (status ~= 0)
-        msg ='There does not appear to be a valid Kerberos ticket.  You may want ';
-        msg = [msg 'to open a terminal window and run "kinit albert.einstein@LIGO.ORG"'];
-        msg = [msg '  You may continue but may not be able to access NDS2 servers'];
-        ldvMsgbox(msg,'No kerberos ticket','warn');
+    % there might be a way to do this on windows but I haven't figured it
+    % out yet
+    iswin = ~isempty(strfind(computer,'PCWIN'));
+    if (~iswin)
+        klistCmd = 'klist -s';
+        if ~isempty(strfind(computer,'MAC'))
+            % The way NDS2 java is implemented causes Macs to have 2
+            % incompatible versions of Kerberos installed, try to pick the
+            % correct one.
+            if (exist('/opt/local/bin/klist','file'))
+                klistCmd = '/opt/local/bin/klist -s';
+            end
+        end
+        % check if we have a valid kerberos ticket
+        [status, result] = system(klistCmd);
+        if (status ~= 0)
+            msg ='There does not appear to be a valid Kerberos ticket.  You may want ';
+            msg = [msg 'to open a terminal window and run "kinit albert.einstein@LIGO.ORG"'];
+            msg = [msg '  You may continue but may not be able to access NDS2 servers'];
+            ldvMsgbox(msg,'No kerberos ticket','warn');
+        end
     end
-
     % OK now you can do what you wanted to do all along
     ligoDV;
 

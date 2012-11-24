@@ -22,7 +22,7 @@ nobs = size(dobsSelected,1);
   if nobs == 0
       error('### No data objects selected. Select one or more from Data Pool.');
   end
-dobjs = [];
+dids=[];
 for d=1:nobs
   ds = strtok(dobsSelected(d,:), ':');
   if ~isempty(str2num(ds))

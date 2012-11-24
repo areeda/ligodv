@@ -30,18 +30,20 @@ function dobjs = ldv_getdata(varargin)
                 chnam = chnam(1:p-1);
             end
 
+            k0 = k-1;
             if strcmp(stat,'max,mean,min')
-                chanstemp(k+3*(k-1)+0) = strcat({chnam},'.max');
-                chanstemp(k+3*(k-1)+1) = strcat({chnam},'.mean');
-                chanstemp(k+3*(k-1)+2) = strcat({chnam},'.min');
+                chanstemp(3*k0+1) = strcat({chnam},'.max');
+                chanstemp(3*k0+2) = strcat({chnam},'.mean');
+                chanstemp(3*k0+3) = strcat({chnam},'.min');
             elseif strcmp(stat,'max,min')
-                chanstemp(k+2*(k-1)+0) = strcat({chnam},'.max');
-                chanstemp(k+2*(k-1)+1) = strcat({chnam},'.min');
+                chanstemp(2*k0+1) = strcat({chnam},'.max');
+                chanstemp(2*k0+2) = strcat({chnam},'.min');
             else
                 chanstemp(k) = strcat({chnam},'.',stat);
             end
         end
-        params.channels = char(chanstemp);
+        
+        params.channels = chanstemp;
     end
 
     % set empty data objects
@@ -59,7 +61,13 @@ function dobjs = ldv_getdata(varargin)
 
     % loop through channels and times
     ntimes = params.times.ntimes;
-    nchans = size(params.channels,1);
+    % it seems the list of channels can be a string array or a cell array,
+    % I haven't quite figured out why so we'll handle both.
+    if (iscell(params.channels))
+        nchans = size(params.channels,2);
+    else
+        nchans = size(params.channels,1);
+    end
     ermsg = ''; % we'll put our notes on problems here
     goodDataMsg = '';  % records successful transfers
 
@@ -72,9 +80,25 @@ function dobjs = ldv_getdata(varargin)
 
             t0 = clock;
 
-            channel  = params.channels(ch,:);
+            % for some unknown reason we started getting cell arrays
+            % instead of charactr arrays so lets hanle both.
+            pch = params.channels;
+            if (iscell(pch))
+                channel = pch(ch);
+            else
+                channel  = params.channels(ch,:);
+            end
+            if (iscell(channel))
+                channel = char(channel);
+            end
+            progBar.setChanName(channel);
             startgps = params.times.t(time).startgps-primeTime;
             stopgps  = params.times.t(time).stopgps;
+            duration = stopgps - startgps;
+            curTranTxt = sprintf...
+                ('Channel %d of %d, Interval %d of %d (%d sec)',...
+                ch,nchans,time,ntimes,duration);
+            progBar.setWorkingOn(curTranTxt);
 
             % If in NDS Server mode, we need to adjust for trend data
             switch dvmode
@@ -113,6 +137,7 @@ function dobjs = ldv_getdata(varargin)
             params.channel  = deblank(channel);
             params.startgps = startgps;
             params.stopgps  = stopgps;
+            
             ldv_disp('* getting channel %s for %d - %d', channel, startgps, stopgps);
             x=[];   % just is 
             fs=0;
@@ -121,8 +146,12 @@ function dobjs = ldv_getdata(varargin)
             catch e
                 % we're in an inner loop just record the error and display
                 % them all at once when we're done.
+                ctxt = channel;
+                if (iscell(ctxt))
+                    ctxt = char(ctxt);
+                end
                 ermsg = [ermsg sprintf('-%s: (%d, +%d)\n   %s - %s\n', ...
-                    params.channel, startgps, stopgps-startgps, e.identifier, e.message)];
+                    ctxt, startgps, stopgps-startgps, e.identifier, e.message)];
             end
 
             %----- build data object
@@ -133,7 +162,12 @@ function dobjs = ldv_getdata(varargin)
                 dobjs.objs(dobjs.nobjs).id = -ch;
 
                 % set data object channel name
-                dobjs.objs(dobjs.nobjs).channel  = params.channel;
+                ctxt = params.channel;
+                if (iscell(ctxt))
+                    ctxt = char(ctxt);
+                end
+
+                dobjs.objs(dobjs.nobjs).channel  = ctxt;
 
                 % set data object times and comment
                 dobjs.objs(dobjs.nobjs).startgps = params.startgps;
@@ -191,13 +225,16 @@ function dobjs = ldv_getdata(varargin)
                 dobjs.objs(dobjs.nobjs).filters.filts  = [];
                 dobjs.objs(dobjs.nobjs).filters.apply  = 0;
 
+                ctxt = params.channel;
+                if (iscell(ctxt))
+                    ctxt = char(ctxt);
+                end
                 ldv_disp('* got %d secs of data for %s in %2.2f secs',...
-                    (stopgps-startgps), params.channel, etime(clock, t0));
+                    (stopgps-startgps), ctxt, etime(clock, t0));
                 fprintf('\n')
                 goodDataMsg = [goodDataMsg sprintf('+%s: %d sec received\n',...
-                    params.channel, (stopgps-startgps))];
+                    ctxt, (stopgps-startgps))];
             end  % good data recieved
-            drawnow();
         end % each time interval in list
     end % each channel in list
 
@@ -211,7 +248,7 @@ function dobjs = ldv_getdata(varargin)
         disp(ermsg);
         ldvMsgbox(ermsg,'Problem(s) getting data','warn');
     end
-    drawnow();      % update the Data pool window.
+    
     progBar.done();  % close the progress bar dialog
 end
 

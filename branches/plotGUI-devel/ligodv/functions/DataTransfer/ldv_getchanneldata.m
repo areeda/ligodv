@@ -30,11 +30,13 @@ switch dvmode
     case {'NDS Server', 'NDS2 Server'}
         [dtype, server, port, startgps, stopgps, channel] =...
             unpackParams(dvmode, params);
-
     otherwise
         error('### unknown dataviewer mode');
 end
 
+if (iscell(channel))
+    channel = char(channel);
+end
 % get settings
 settings = getappdata(handles.main, 'settings');
 
@@ -102,7 +104,7 @@ if strcmp(params.dtype, 'minute trends')
 end
 
 if strcmp(params.dtype, 'hour trends') || strcmp(params.dtype, 'blrms trends')
-    fsi = 1/360;
+    fsi = 1/3600;
 end
 
 if strcmp(params.dtype, 'day trends')

@@ -25,7 +25,9 @@ function dname = getHomeDir(  )
         if stat ~= 1
             m = ['Error creating "' saveDir '" ' mesg ' No home directory for saving state/settings available.'];
             ldvMsgbox(m,'Creating Preferences Directory','error');
-        
+            dname = '';
+        else
+            dname = saveDir;
         end
     elseif de ~= 7
         % something is there but it's not a directory

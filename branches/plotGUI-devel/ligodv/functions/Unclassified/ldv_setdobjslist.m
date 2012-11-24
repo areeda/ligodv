@@ -35,6 +35,9 @@ try
 
   % display info about first object
   ldv_setdobjinfo(handles);
+catch e
+    msg = sprintf('Error setting data pool list: %s',e.message);
+    disp(msg);
 end
 
 % END

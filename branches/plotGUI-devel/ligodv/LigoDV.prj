@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="1059700038">
+  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="638357142">
     <param.appname>LigoDV</param.appname>
     <param.authnamewatermark>Joseph Areeda, Joshua Smith</param.authnamewatermark>
     <param.email>ligodv@gravity.phys.uwm.edu</param.email>
@@ -9,7 +9,7 @@
     <param.summary>General purpose data viewer for LIGO channel data using NDS2 and LigoDV-web to download data.</param.summary>
     <param.description>LigoDV provides general tools to download, view and analyze time series data from NDS1 and NDS2 servers located on the Internet. It interfaces with LigoDV-web as an alternate means to get data and publish plots. User documentation is available through the Help menu or directly at https://wiki.ligo.org/foswiki/bin/view/LDG/DASWG/LigoDV A LIGO albert.einstein style login is required for network operations.</param.description>
     <param.screenshot />
-    <param.version>1.14.0.1</param.version>
+    <param.version>1.14.0.10</param.version>
     <param.products.name>
       <item>MATLAB</item>
       <item>Signal Processing Toolbox</item>
@@ -24,7 +24,7 @@
     </param.products.version>
     <param.platforms />
     <param.output>/home/joe/ligo/ligodv-1.14-Plotgui/LigoDV.mlappinstall</param.output>
-    <param.guid>5b89e087-b13f-4407-8cde-233f0414c81b</param.guid>
+    <param.guid>540f65c3-cfe0-400d-beed-eb14b2629637</param.guid>
     <unset>
       <param.icon />
       <param.screenshot />
@@ -144,11 +144,11 @@
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_lowpass.m</file>
       <file>${PROJECT_ROOT}/functions/Preprocess/ldv_mkwhiteningfilter.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateChirp.m</file>
-      <file>${PROJECT_ROOT}/functions/TestData/generateDampedSine.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateGaussianNoise.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateImpulse.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateSawtooth.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateSine.m</file>
+      <file>${PROJECT_ROOT}/functions/TestData/generateSineGauss.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateSquareWave.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateTestData.m</file>
       <file>${PROJECT_ROOT}/functions/TestData/generateWhiteNoise.m</file>
@@ -279,6 +279,7 @@
       <file>${PROJECT_ROOT}/main/ldvparams.m</file>
       <file>${PROJECT_ROOT}/main/ligoDV.fig</file>
       <file>${PROJECT_ROOT}/main/ligoDV.m</file>
+      <file>${PROJECT_ROOT}/main/tileFigures.m</file>
       <file>${PROJECT_ROOT}/main/verifyNdsPath.m</file>
       <file>${PROJECT_ROOT}/plotGUI/spectrogramParam.fig</file>
       <file>${PROJECT_ROOT}/plotGUI/spectrogramParam.m</file>

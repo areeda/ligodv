@@ -266,13 +266,13 @@ if  maximumMismatch > maximumAllowableMismatch,
 end
 
 % check for integer power of two data length
-if mod(log(timeRange * sampleFrequency) / log(2), 1) ~= 0,
-  msg = 'data length is not an integer power of two';
-      mymsg = sprintf(msg);
-      mb = msgbox(mymsg, 'Input Error', 'error');
-      waitfor(mb);
-      %error('data length is not an integer power of two');
-end
+% if mod(log(timeRange * sampleFrequency) / log(2), 1) ~= 0,
+%   msg = 'data length is not an integer power of two';
+%       mymsg = sprintf(msg);
+%       mb = msgbox(mymsg, 'Input Error', 'error');
+%       waitfor(mb);
+%       %error('data length is not an integer power of two');
+% end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              determine Q planes                              %
@@ -310,33 +310,14 @@ minimumAllowableFrequency = minimumAllowableIndependents * max(qs) / ...
 maximumAllowableFrequency = nyquistFrequency / (1 + qPrimeToQ / min(qs));
 
 % check for valid minimum frequency
-%if (minimumFrequency ~= 0) && ...
-%   (minimumFrequency < minimumAllowableFrequency),
-  %error(['requested minimum frequency of %.2f Hz ' ...
-        %'less than minimum allowable frequency of %.2f Hz\n'], ...
-        %minimumFrequency, minimumAllowableFrequency);
-   % msg = ['requested minimum frequency of %.2f Hz ' ...
-   %     'less than minimum recommended frequency of %.2f Hz\n'];
-   %   mymsg = sprintf(msg,minimumFrequency, minimumAllowableFrequency);
-   %   mb = msgbox(mymsg, 'Input Warning', 'warn');
-   %   waitfor(mb);
-      %error(['requested minimum frequency of %.2f Hz ' ...
-      % 'less than minimum allowable frequency of %.2f Hz\n'], ...
-      %  minimumFrequency, minimumAllowableFrequency);
-%end
-
+if (minimumFrequency ~= 0) && (minimumFrequency < minimumAllowableFrequency)
+    minimumFrequency = minimumAllowableFrequency;
+end
+ 
 % check for valid maximum frequency
-%if (maximumFrequency ~= Inf) && ...
-%   (maximumFrequency > maximumAllowableFrequency),
-%msg = ['requested maximum frequency of %.2f Hz ' ...
-%        'greater than maximum allowable frequency %.2f Hz\n'];
- %     mymsg = sprintf(msg, minimumFrequency, minimumAllowableFrequency);
- %     mb = msgbox(mymsg, 'Input Error', 'error');
- %     waitfor(mb);
- % error(['requested maximum frequency of %.2f Hz ' ...
- %        'greater than maximum allowable frequency %.2f Hz\n'], ...
- %       maximumFrequency, maximumAllowableFrequency);
-%end
+if (maximumFrequency ~= Inf) && (maximumFrequency > maximumAllowableFrequency)
+    maximumFrequency = maximumAllowableFrequency;
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                     create Q transform tiling structure                      %

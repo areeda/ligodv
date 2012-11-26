@@ -10,6 +10,7 @@ function generateTestData( handles )
     param.freq = getVal(handles.sigFrqTxt);
     param.nHarmonics = getVal(handles.harmonicTxt) + 1;
     param.decay =  get(handles.decayCB,'Value');
+    param.q = getVal(handles.qVal);
     
     name='oops';
     % generate specified data
@@ -38,10 +39,10 @@ function generateTestData( handles )
         name = 'Sine';
     end
     
-    if (get(handles.sineDecayRB,'Value'))
-        x = generateDampedSine(param);
-        name = 'Damped Sine';
-    end
+%     if (get(handles.sineDecayRB,'Value'))
+%         x = generateDampedSine(param);
+%         name = 'Damped Sine';
+%     end
     
     if (get(handles.squareWaveRB,'Value'))
         x = generateSquareWave(param);
@@ -51,6 +52,11 @@ function generateTestData( handles )
     if (get(handles.whiteNoiseRB,'Value'))
         x = generateWhiteNoise(param);
         name = 'White_noise';
+    end
+
+    if (get(handles.sineGaussRB,'Value'))
+        x = generateSineGauss(param);
+        name = 'Sine Gaussian';
     end
     
     strtTime = ldv_getlatest(handles);  % current GPS time

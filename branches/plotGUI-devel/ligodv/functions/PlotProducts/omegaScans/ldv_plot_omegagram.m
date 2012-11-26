@@ -27,6 +27,15 @@ params.energyLoss = str2num(get(handles.plotOmegagramEnergyLoss, 'String'));
 params.whiteningDuration = str2num(get(handles.plotOmegagramWhiteningDuration, 'String'));
 params.aspectRatio = str2num(get(handles.plotOmegagramAspectRatio, 'String'));
 
+%limit the max frequency to the nyquist
+if (nobjs > 0)
+    i = dobjsidx(1);    % all have to be same frequency anyway so take the first
+    fs = dobjs.objs(i).data.fs;
+    nyq = fs/2;
+    if (params.freqRange(2) > nyq)
+        params.freqRange(2) = nyq;
+    end
+end
 % log y-axis?
 logy = get(handles.plotOmegagramLogY, 'Value');
 

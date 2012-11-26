@@ -33,7 +33,9 @@ function [x,fs]  = ldv_getNDS2data(dtype, server, port,...
             channel = [channel,',s-trend'];
 
         case 'reduced data'
-            channel = [channel,',reduced'];
+            % looks like we're not supposed to set rds or reduced as channel
+            % type
+            %channel = [channel,',reduced'];
 
         otherwise
 

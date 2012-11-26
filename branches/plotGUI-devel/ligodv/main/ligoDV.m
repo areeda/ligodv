@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 15-Nov-2012 15:29:21
+% Last Modified by GUIDE v2.5 24-Nov-2012 22:39:30
 
 %%
 function varargout = ligoDV(varargin)
@@ -3604,3 +3604,11 @@ function playBtn_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     PlayDataAsSound(handles);
+
+
+% --------------------------------------------------------------------
+function tilePlot_Callback(hObject, eventdata, handles)
+% hObject    handle to tilePlot (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    tileFigures();

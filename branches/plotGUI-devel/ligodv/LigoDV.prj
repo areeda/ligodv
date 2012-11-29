@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="638357142">
+  <configuration target="target.mlapps" target-name="Package App" name="LigoDV" location="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv" file="/home/joe/ligo/ligodv-1.14-Plotgui/ligodv/LigoDV.prj" build-checksum="2616063745">
     <param.appname>LigoDV</param.appname>
     <param.authnamewatermark>Joseph Areeda, Joshua Smith</param.authnamewatermark>
     <param.email>ligodv@gravity.phys.uwm.edu</param.email>
@@ -9,22 +9,22 @@
     <param.summary>General purpose data viewer for LIGO channel data using NDS2 and LigoDV-web to download data.</param.summary>
     <param.description>LigoDV provides general tools to download, view and analyze time series data from NDS1 and NDS2 servers located on the Internet. It interfaces with LigoDV-web as an alternate means to get data and publish plots. User documentation is available through the Help menu or directly at https://wiki.ligo.org/foswiki/bin/view/LDG/DASWG/LigoDV A LIGO albert.einstein style login is required for network operations.</param.description>
     <param.screenshot />
-    <param.version>1.14.0.10</param.version>
+    <param.version>1.14.1.1</param.version>
     <param.products.name>
-      <item>MATLAB</item>
       <item>Signal Processing Toolbox</item>
+      <item>MATLAB</item>
     </param.products.name>
     <param.products.id>
-      <item>1</item>
       <item>8</item>
+      <item>1</item>
     </param.products.id>
     <param.products.version>
-      <item>8.0</item>
       <item>6.18</item>
+      <item>8.0</item>
     </param.products.version>
     <param.platforms />
     <param.output>/home/joe/ligo/ligodv-1.14-Plotgui/LigoDV.mlappinstall</param.output>
-    <param.guid>540f65c3-cfe0-400d-beed-eb14b2629637</param.guid>
+    <param.guid>678ae5f8-acc1-4fab-be49-376202ef1c9a</param.guid>
     <unset>
       <param.icon />
       <param.screenshot />

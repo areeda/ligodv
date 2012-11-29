@@ -8,11 +8,11 @@
 % current version number used for update check NB: 1.13b1 < 1.13 (the
 % released version).
 global curVersion;
-curVersion = '1.14a10';
+curVersion = '1.14b1';
 
 % Where to report problems
 global contact;
-contact='ligodv@rt.gravity.phys.uwm.edu';
+contact='ligodv@gravity.phys.uwm.edu';
 % if we are a pre-release we always want to nag if an upgrade is available
 Help.checkForUpdate(true);
 

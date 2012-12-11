@@ -13,7 +13,7 @@ classdef Help < handle
         homePage = 'https://wiki.ligo.org/LDG/DASWG/LigoDV';
         
         updatePage = 'https://wiki.ligo.org/LDG/DASWG/LigoDVReleaseNotes';
-        versionText = 'https://www.lsc-group.phys.uwm.edu/daswg/projects/ligodv/ligoDVVersion.txt';
+        versionText = 'http://ldvw.ligo.caltech.edu/public/ligoDVVersion.txt';
     end
     
     methods (Static)

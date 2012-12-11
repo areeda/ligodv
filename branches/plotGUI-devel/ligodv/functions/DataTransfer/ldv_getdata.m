@@ -7,7 +7,7 @@ function dobjs = ldv_getdata(varargin)
 %
 % $Id$
 %
-
+    ldv_setStatus('Getting data from server');
     handles = varargin{1};
 
     % get settings
@@ -238,9 +238,9 @@ function dobjs = ldv_getdata(varargin)
         end % each time interval in list
     end % each channel in list
 
-    if (length(ermsg) > 0)
+    if (~isempty(ermsg))
         
-        if (length(goodDataMsg) > 0)
+        if (~isempty(goodDataMsg))
             ermsg = sprintf('PROBLEM GETTING DATA:\n\n%s',ermsg);
             ermsg = [sprintf('%s\n---\nSUCCESSFUL TRANSFERS:\n\n%s',...
                 ermsg, goodDataMsg)];
@@ -250,6 +250,7 @@ function dobjs = ldv_getdata(varargin)
     end
     
     progBar.done();  % close the progress bar dialog
+    ldv_setStatus('Ready');
 end
 
 

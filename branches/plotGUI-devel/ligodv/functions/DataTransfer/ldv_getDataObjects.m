@@ -15,30 +15,32 @@ function ldv_getDataObjects(handles)
                             server, port,...
                             times, channels);
                       
-                          
-  % get existing dobjs
-  dobjs = getappdata(handles.main, 'dobjs');
-  try
-    didx  = ldv_getselecteddobjs(handles);
-  catch
-    didx = [];
+  nnew = newdobjs.nobjs;
+  if (nnew > 0)
+      % get existing dobjs
+      dobjs = getappdata(handles.main, 'dobjs');
+      try
+        didx  = ldv_getselecteddobjs(handles);
+      catch
+        didx = [];
+      end
+      if isempty(didx)
+        didx = 1;
+      end
+
+      % we should check for any objects that are duplicated
+      % before adding them to the existing list.
+      % !!! Better would be to do this _before_ getting the data
+      %     Something for v2 !!!
+      %   
+      dobjs = ldv_dobjsunique(dobjs, newdobjs, handles);
+
+      % set list of objects
+      setappdata(handles.main, 'dobjs', dobjs);
+      ldv_setnobjsdisplay(handles, dobjs);
+      ldv_setdobjslist(handles, dobjs, didx(didx<dobjs.nobjs));
+      drawnow;  % make sure the new objects are shown
   end
-  if isempty(didx)
-    didx = 1;
-  end
-  
-  % we should check for any objects that are duplicated
-  % before adding them to the existing list.
-  % !!! Better would be to do this _before_ getting the data
-  %     Something for v2 !!!
-  %   
-  dobjs = ldv_dobjsunique(dobjs, newdobjs, handles);
-  
-  % set list of objects
-  setappdata(handles.main, 'dobjs', dobjs);
-  ldv_setnobjsdisplay(handles, dobjs);
-  ldv_setdobjslist(handles, dobjs, didx(didx<dobjs.nobjs));
-  drawnow;  % make sure the new objects are shown
 end
 
 

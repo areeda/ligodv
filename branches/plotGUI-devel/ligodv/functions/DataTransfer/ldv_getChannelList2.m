@@ -3,7 +3,7 @@ function ldv_getChannelList2(handles,srchParams)
 %LDV_GETCHANNELLIST2  - use java to get a partial list of channels
 %   take advantage of the local database in the SWIG bindings for fast
 %   searching
-
+    ldv_setStatus('searching for channels');
     % get server
     server = ldv_getserver(handles);
     % get port
@@ -108,5 +108,6 @@ function ldv_getChannelList2(handles,srchParams)
         end
     end
     watchoff;
+    ldv_setStatus('Ready');
 end
 

@@ -44,8 +44,8 @@ cd $tdir
 # delete any versioning directories and files
 find . -name .svn -exec rm -rf {} \;
 
-tar -zcf ${cdir}/${name}.tgz $name
-zip -9rp ${cdir}/${name}.zip $name >/dev/null
+tar -zcf ${cdir}/${name}.tgz *
+zip -9rp ${cdir}/${name}.zip * >/dev/null
 
 # back to the source dir for any clean up if necessary
 cd $cdir

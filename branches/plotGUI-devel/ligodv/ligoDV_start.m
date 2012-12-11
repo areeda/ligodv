@@ -42,7 +42,19 @@ global ranLdvStartup;
         matlabRel=version('-release');
         nds2Path = getenv('NDS2_LOCATION');
         comp = computer;        % some paths vary depending on OS
-
+        isWin=0;
+        isMac=0;
+        isLinux=0;
+        pathSep = '/';
+        if (~isempty(strfind(comp,'WIN')))
+            isWin=1;
+            pathSep='\';
+        elseif (~isempty(strfind(comp,'MAC')))
+            isMac=1;
+        elseif (~isempty(strfind(comp,'LINUX')))
+            isLinux=1
+        end
+        
         ndsPath='';
         ndsErr=0;
         ermsg = '';
@@ -62,12 +74,12 @@ global ranLdvStartup;
                 ermsg = 'No home directory available';
             else
                 % see if we saved it in our preferences/state directory
-                ndspathfile = [dname '/' 'ndspath.save'];
+                ndspathfile = [dname pathSep 'ndspath.save'];
 
                 if (exist(ndspathfile,'file'))
                     fileid = fopen(ndspathfile,'r');
-                    ndsPath=textscan(fileid,'%s');
-                    ndsPath = char(ndsPath{1});
+                    ndsPath=fgetl(fileid);
+                    %ndsPath = char(ndsPath{1});
                     fclose(fileid);
                     ndsPath = verifyNdsPath(ndsPath);
                     if (isempty(ndsPath))
@@ -86,18 +98,23 @@ global ranLdvStartup;
                         error(ermsg);
                     elseif (strcmp(answer,'Browse'))
                          ndsPath = uigetdir('java','Specify the Java directory in the NDS2 installation (.../lib/java not lib/java/nds2');
-                         ndsPath = verifyNdsPath(ndsPath);
-                         if (~isempty(ndsPath))
-                             % save it so we don't have to ask again
-                             fileid = fopen(ndspathfile,'w');
-                             fprintf(fileid,'%s\n',ndsPath);
-                             fclose(fileid);
+                         if (ndsPath ~= 0)
+                             ndsPath = verifyNdsPath(ndsPath);
+                             if (~isempty(ndsPath))
+                                 % save it so we don't have to ask again
+                                 fileid = fopen(ndspathfile,'w');
+                                 fprintf(fileid,'%s\n',ndsPath);
+                                 fclose(fileid);
+                             end
                          end
                     elseif (strcmp(answer,'Continue'))
                             ndsPath='';
                         break;
                     end
                 end
+            end
+            if (ndsPath == 0)
+                ndsPath='';
             end
             if ~isempty(ndsPath)
                 javaaddpath(ndsPath);

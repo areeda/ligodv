@@ -88,7 +88,7 @@ classdef DataObject < handle
         
         % return the data as a 2xn matrix where ts(1,:) is time vector
         % t(2,:) is the channel data
-        function ts = getTimeSeries(this)
+        function ts = getXY(this)
             d = this.getDuration();
             nsamp = d * this.getFs();
             t = [1:nsamp] / this.getFs() + this.getStart();
@@ -96,6 +96,16 @@ classdef DataObject < handle
             ts = zeros(nsamp,2);
             ts(:,1) = t';
             ts(:,2) = x;
+        end
+        
+        % return the data as a Matlab time series object
+        function ts = getTimeSeries(this)
+            t = this.getXY();
+            name=this.getChanName();
+            % note that we have escape _'s or else they are interpreted as
+            % subscripts by the plot function
+            name=strrep(name,'_','\_');
+            ts=timeseries(t(:,2),t(:,1),'Name',name);
         end
         
         function setFs(this,f)

@@ -1,9 +1,9 @@
 function ldvwImport( handles )
-%LDVWIMPORT Select and run and ldvwExport file, adding the new objects to
-%the data pool
+%LDVWIMPORT Select and import data from an ldvwExport file into the data
+%pool
 
-%   ldvw produces an m file which creates a data object structure which we
-%   add to the data pool.
+%   ldvw produces an m file which contains a function that creates a 
+%   data object structure which we then can add to the data pool.
 
     global importDirectory;
     
@@ -20,6 +20,7 @@ function ldvwImport( handles )
         try
             [fileDir,script,ext] = fileparts(filename);
             cd (pathname);
+            importDirectory=pathname;   % let them start here next time
             fileDir = pwd;
             cleaner = onCleanup(@() resetCD(startDir,fileDir));
 
@@ -30,7 +31,7 @@ function ldvwImport( handles )
             end
             addToDataPool(handles, newObjs);
         catch ex
-            sprintf('Error importing: %s\n',ex.message);
+            fprintf('Error importing: %s\n',ex.message);
         end
         drawnow;
         watchoff;

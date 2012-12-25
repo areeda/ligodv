@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 24-Nov-2012 22:39:30
+% Last Modified by GUIDE v2.5 24-Dec-2012 09:01:49
 
 %%
 function varargout = ligoDV(varargin)
@@ -3569,7 +3569,6 @@ function ldvwImport_Callback(hObject, eventdata, handles)
     ldvwImport(handles);
     drawnow;
 
-
 % --------------------------------------------------------------------
 function gaussianMI_Callback(hObject, eventdata, handles)
 % hObject    handle to gaussianMI (see GCBO)
@@ -3612,3 +3611,12 @@ function tilePlot_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     tileFigures();
+
+
+% --------------------------------------------------------------------
+function importWavMI_Callback(hObject, eventdata, handles)
+% hObject    handle to importWavMI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    audioImport(handles);
+    drawnow;

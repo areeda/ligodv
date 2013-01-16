@@ -22,7 +22,7 @@ function varargout = testData(varargin)
 
 % Edit the above text to modify the response to help testData
 
-% Last Modified by GUIDE v2.5 25-Nov-2012 13:02:25
+% Last Modified by GUIDE v2.5 11-Jan-2013 18:18:50
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -212,3 +212,11 @@ function qVal_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in helpBtn.
+function helpBtn_Callback(hObject, eventdata, handles)
+% hObject    handle to helpBtn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    Help.show('TestDataGenerator');

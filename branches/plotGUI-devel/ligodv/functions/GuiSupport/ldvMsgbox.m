@@ -47,6 +47,6 @@ function h = ldvMsgbox(varargin)
     set( ch, 'FontSize', 12 );
     set(ch,'FontName','Times');
     set(ah(btnChildn),'BackgroundColor',[.95 .95 .95]);
-    uiwait(h);
+    %uiwait(h);     % this presents problems on windows
 end
 

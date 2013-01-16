@@ -1,4 +1,4 @@
-function ligoDV_start()
+function ligoDV_stvart()
 %% LigoDv startup script
 % set paths for java scripts and .m files
 global ranLdvStartup;
@@ -12,7 +12,7 @@ global ranLdvStartup;
 
         addpath(genpath(ligodvRootPath));   % genpath finds all subdirectories
 
-        %%
+        %% set java paths for our jars
         jarPath = [ligodvRootPath '/jars'];
         t=exist(jarPath, 'dir');
         ermsg = '';
@@ -38,9 +38,9 @@ global ranLdvStartup;
                 warning(ermsg);
             end
         end
-        %% add paths nds java interface
+        %% detrmine what type of computer we're using
         matlabRel=version('-release');
-        nds2Path = getenv('NDS2_LOCATION');
+        
         comp = computer;        % some paths vary depending on OS
         isWin=0;
         isMac=0;
@@ -54,19 +54,29 @@ global ranLdvStartup;
         elseif (~isempty(strfind(comp,'LINUX')))
             isLinux=1
         end
-        
+        %% add paths nds java interface
         ndsPath='';
         ndsErr=0;
         ermsg = '';
-
-        % do some validation of paths.  This code should be good enough to
-        % determine if the paths have been set correctly but is not complete enough
-        % to validate the whole NDS/NDS2 installation
-        if (~isempty(nds2Path))
-            ndsPath = strcat(nds2Path,'/lib/java');
-            ndsPath = verifyNdsPath(ndsPath);
+        
+        % first we'll try the fancy new configuration info getter
+        [st res] = system('nds-client-config --javaclasspath');
+        if (st == 0)
+            ndsPath = verifyNdsPath(strtrim(res));
         end
+        if (isempty(ndsPath))
+            % then we can try to see if they set an environment
+            nds2Path = getenv('NDS2_LOCATION');
 
+            % do some validation of paths.  This code should be good enough to
+            % determine if the paths have been set correctly but is not complete enough
+            % to validate the whole NDS/NDS2 installation
+            if (~isempty(nds2Path))
+                ndsPath = strcat(nds2Path,'/lib/java');
+                ndsPath = verifyNdsPath(ndsPath);
+            end
+        end
+        
         if (isempty(ndsPath))
             % we didn't get nds module from the environment
             dname=getHomeDir();
@@ -116,12 +126,12 @@ global ranLdvStartup;
             if (ndsPath == 0)
                 ndsPath='';
             end
-            if ~isempty(ndsPath)
-                javaaddpath(ndsPath);
-            else
-                ldvMsgbox('NDS bindigs are not available, you may not be able to pull data', ...
-                'NDS not found');
-            end
+        end
+        if ~isempty(ndsPath)
+            javaaddpath(ndsPath);
+        else
+            ldvMsgbox('NDS bindigs are not available, you may not be able to pull data', ...
+            'NDS not found');
         end
         % we only want to do this once
         ranLdvStartup = 'yes';

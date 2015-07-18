@@ -7,31 +7,31 @@ function handlesout = ldv_init(handles)
 % $Id$
 
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 setappdata(handles.main, 'FullChannelList', []);
 
 %% Set dv mode
-set(handles.dvmode, 'String', settings.general.modes);
+set(handles.dvmode, 'String', ldv_settings.general.modes);
 set(handles.dvmode, 'Value', 1);
 ldv_setdvmode(handles);
 
 %% Default settings for Frame File mode
-set(handles.ff_dirstruct, 'String', settings.ff.dir_structs);
+set(handles.ff_dirstruct, 'String', ldv_settings.ff.dir_structs);
 set(handles.ff_dirstruct, 'Value', 2);
 
 
 %% Default settings for Ligo NDS Server Mode
-set(handles.gd_dataTypeSelect, 'String', settings.gd.data_types);
+set(handles.gd_dataTypeSelect, 'String', ldv_settings.gd.data_types);
 set(handles.gd_dataTypeSelect, 'Value', 1);
 ldv_setdatatype(handles);
-set(handles.gd_serverSelect, 'String', settings.gd.servers);
+set(handles.gd_serverSelect, 'String', ldv_settings.gd.servers);
 set(handles.gd_serverSelect, 'Value', 1);
 ldv_setserverdetails(handles);
-set(handles.gd_stat, 'String', settings.gd.stats);
+set(handles.gd_stat, 'String', ldv_settings.gd.stats);
 set(handles.gd_stat, 'Value', 3);
 
 %% Default settings for time panel
-set(handles.timeInputMode, 'String', settings.time.modes);
+set(handles.timeInputMode, 'String', ldv_settings.time.modes);
 set(handles.timeInputMode, 'Value', 1);
 ldv_settimepanel(handles);
 
@@ -51,19 +51,19 @@ ldv_setnobjsdisplay(handles, dobjs);
 %% Setup preprocessing panel
 
 % set units
-set(handles.preprocUnits, 'String', settings.units);
+set(handles.preprocUnits, 'String', ldv_settings.units);
 set(handles.preprocUnits, 'Value', 1);
 tempunit = ldv_setunit(handles);
 
 % set resample rate
-set(handles.preprocResampleR, 'String', settings.resample.factors);
+set(handles.preprocResampleR, 'String', ldv_settings.resample.factors);
 set(handles.preprocResampleR, 'Value', 1);
 
 
 
 %% Setup analysis panel
 
-set(handles.plotType, 'String', settings.analyses);
+set(handles.plotType, 'String', ldv_settings.analyses);
 set(handles.plotType, 'Value', 1);
 ldv_setplottype(handles);
 

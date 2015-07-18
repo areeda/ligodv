@@ -8,8 +8,8 @@ function dv_ffSetNfiles(handles)
 % 
 
 
-settings = getappdata(handles.main, 'settings');
-set(handles.ff_Nfiles, 'String', sprintf('%d files', settings.ff.fcache.nfiles));
+ldv_settings = getappdata(handles.main, 'ldv_settings');
+set(handles.ff_Nfiles, 'String', sprintf('%d files', ldv_settings.ff.fcache.nfiles));
 
 
 % END

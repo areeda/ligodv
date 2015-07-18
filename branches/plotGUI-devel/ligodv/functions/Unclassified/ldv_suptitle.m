@@ -52,7 +52,7 @@ ff = (fs-4)*1.27*5/pos(4)*fudge;
 ch = get(gcf,'children');
 h=[];
 for i=1:length(ch)
-  if strcmp(get(ch(i),'type'),'axes')
+  if isgraphics(ch( i ),'axes')
     h=[h,ch(i)];
   end
 end

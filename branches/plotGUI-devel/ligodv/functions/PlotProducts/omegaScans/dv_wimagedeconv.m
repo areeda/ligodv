@@ -236,7 +236,7 @@ end
 numberOfPlanes = length(planeIndices);
 
 % initialize handle vector
-handles = zeros(numberOfChannels, numberOfPlanes);
+handles = gobjects(numberOfChannels, numberOfPlanes);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                          identify times to display                           %

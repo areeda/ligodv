@@ -10,8 +10,8 @@ function ldv_plot_spectrogram(handles)
 % 
 
 % settings
-settings = getappdata(handles.main, 'settings');
-colors   = settings.general.colors;
+ldv_settings = getappdata(handles.main, 'ldv_settings');
+colors   = ldv_settings.general.colors;
 Ncols    = length(colors);
 
 % get the selected data objects
@@ -164,7 +164,7 @@ for ob = 1:nobjs
   
   % plot settings
   hc = colorbar;
-  set(get(hc, 'YLabel'), 'String', cbtstr, 'Fontweight', 'bold', 'VerticalAlignment', 'top');
+  set(get(hc, 'Label'), 'String', cbtstr, 'Fontweight', 'bold', 'VerticalAlignment', 'top');
   colormap(cmap);
   if interp
     set(h, 'EdgeColor', 'interp', 'FaceColor', 'interp', 'FaceLighting','phong');

@@ -7,7 +7,7 @@ function fcache = dv_getFileCache(handles)
 % $Id$
 % 
 
-settings  = getappdata(handles.main, 'settings');
-fcache    = settings.ff.fcache;
+ldv_settings  = getappdata(handles.main, 'ldv_settings');
+fcache    = ldv_settings.ff.fcache;
 
 % END

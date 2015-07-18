@@ -66,13 +66,7 @@ function ldv_getChannelList2(handles,srchParams)
 
     if (exist('channels','var'))
         if (~isempty(channels))
-            % cut the trend channels out of the list of raw channels
-            if (strcmpi('raw',nds2dtype))
-                idx = find([channels(:).rate] > 1);
-                channels = channels(idx);
-            end
-
-
+            
             % save the full channel list as app data
             setappdata(handles.main, 'FullChannelList', channels);
 
@@ -84,7 +78,7 @@ function ldv_getChannelList2(handles,srchParams)
             for j = 1:length(channels)
                 namestr = char(channels(j).name);
                 rate = channels(j).rate;
-                liststr{j} = sprintf('%-33.33s (%5d)', namestr, rate);
+                liststr{j} = sprintf('%-40.40s (%5d)', namestr, rate);
             end
 
             try

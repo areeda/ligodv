@@ -7,7 +7,7 @@ function dobjs = ldv_dobjsunique(dobjs, newdobjs, handles)
 % 
 % $Id$
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % loop through new data objects
 for j=1:newdobjs.nobjs
@@ -16,7 +16,7 @@ for j=1:newdobjs.nobjs
   notfound = 1;
   for k=1:dobjs.nobjs
     
-    if settings.general.debugLevel > 1
+    if ldv_settings.general.debugLevel > 1
       ldv_disp('* comparing: (%s|%d) against (%s|%d)',...
             dobjs.objs(k).channel, dobjs.objs(k).startgps,...
             newdobjs.objs(j).channel, newdobjs.objs(j).startgps);

@@ -4,11 +4,20 @@ Please see the ligoDV project homepage for installation instructions, and docume
 
 https://wiki.ligo.org/LDG/DASWG/LigoDV
 
-This is the main directory, the subdirectories are organized into logical groups of functions and classes.
+This is the main directory, the subdirectories are organized 
+into logical groups of functions and classes.
 Or at least they will be there are stil quite a few unclassified.
 
-The operation does not depend on the exact structure of the directories but they all must be underneath
-the one containing the ligodv_start function.
+The operation does not depend on the exact structure of the directories 
+but they all must be underneath the one containing the ligodv_start function.
 
 The program is usually started by cd <this directory> && matlab -r ligodv_start
+
+In the directory above this there is a script called ligodv.  You may want to
+edit that script to 
+a) Change the prefix variable to point to this directory.
+b) Uncomment the MATLAB export and have it point to the latest version of Matlab installed
+c) Copy it to somewhere in your path
+
+Then you can start ligoDV with the command ligodv
 

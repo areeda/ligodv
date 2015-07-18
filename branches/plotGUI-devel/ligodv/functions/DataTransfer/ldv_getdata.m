@@ -11,7 +11,7 @@ function dobjs = ldv_getdata(varargin)
     handles = varargin{1};
 
     % get settings
-    settings = getappdata(handles.main, 'settings');
+    ldv_settings = getappdata(handles.main, 'ldv_settings');
 
     % get the data retrieval mode
     dvmode = ldv_getselectionbox(handles.dvmode);
@@ -54,7 +54,7 @@ function dobjs = ldv_getdata(varargin)
     getPrime = get(handles.dv_getPrimeData, 'Value');
     dunit = ldv_getFileUnit(params.dtype);
     if getPrime > 0
-        primeTime = settings.primelength*dunit;
+        primeTime = ldv_settings.primelength*dunit;
     else
         primeTime = 0;
     end

@@ -8,8 +8,8 @@ function [earliest,latest] = dv_ff_getlatest(handles)
 % 
 
 % get the file cache
-settings = getappdata(handles.main, 'settings');
-fcache   = settings.ff.fcache;
+ldv_settings = getappdata(handles.main, 'ldv_settings');
+fcache   = ldv_settings.ff.fcache;
 
 latest = 0;
 earliest = fcache.files(1).start;

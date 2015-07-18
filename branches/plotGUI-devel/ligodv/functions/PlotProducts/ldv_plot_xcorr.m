@@ -10,8 +10,8 @@ function ldv_plot_xcorr(handles)
 % 
 
 % settings
-settings = getappdata(handles.main, 'settings');
-colors   = settings.general.colors;
+ldv_settings = getappdata(handles.main, 'ldv_settings');
+colors   = ldv_settings.general.colors;
 Ncols    = length(colors);
 
 % get the selected data objects

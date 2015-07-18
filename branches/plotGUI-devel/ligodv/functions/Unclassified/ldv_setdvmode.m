@@ -10,8 +10,8 @@ function ldv_setdvmode(handles)
 %
 
 % get settings
-settings = getappdata(handles.main, 'settings');
-dblevel  = settings.general.debugLevel;
+ldv_settings = getappdata(handles.main, 'ldv_settings');
+dblevel  = ldv_settings.general.debugLevel;
 
 % get the selected data retrieval mode
 dvmode  = ldv_getselectionbox(handles.dvmode);
@@ -54,7 +54,7 @@ switch dvmode
         %         framefile(handles, 'on');
         %         % set defualt frame dir
         %         try
-        %             ldv_loadCache(handles, settings.ff.defaultCache);
+        %             ldv_loadCache(handles, ldv_settings.ff.defaultCache);
         %         catch
         %             dv_disp('# default cache file not found');
         %         end

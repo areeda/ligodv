@@ -10,7 +10,8 @@ function xo = ldv_heterodyne(xi, fs, hetf)
 
 ndata = length(xi);
 nsecs = ndata/fs;
-ti    = [linspace(0, nsecs-1/fs, ndata)].';
+ti    = [linspace(0, nsecs-1/fs, ndata)];
+radHetf = pi * hetf /180;
 y     = xi .* sin(2*pi*hetf.*ti);
 
 % low pass

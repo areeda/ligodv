@@ -129,6 +129,11 @@ function chanlist = NDS2_JGetChannels(server, varargin)
     
     % get the channel list specified
     conn=nds2.connection(srv,port);
+    
+    proto = conn.getProtocol;
+    if (proto == 1 & chtype ==ChannelType.CHANNEL_TYPE_RAW)
+        chtype = ChannelType.CHANNEL_TYPE_ONLINE;
+    end
 
     chls = conn.findChannels(srchStr, chtype, data_type, minFs, maxFs);
 

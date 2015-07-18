@@ -59,10 +59,10 @@ handles.output = hObject;
 ldvparams;
 
 % add functions/ to path
-% addpath(settings.general.functions_path)
+% addpath(ldv_settings.general.functions_path)
 
 % make settings structure
-setappdata(handles.main, 'settings', settings);
+setappdata(handles.main, 'ldv_settings', ldv_settings);
 
 % now we have the functions path the rest can go in init()
 handles = fdlg_init(handles);

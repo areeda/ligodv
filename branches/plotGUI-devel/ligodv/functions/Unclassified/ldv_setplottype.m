@@ -273,7 +273,7 @@ end
 %
 function setspectrum(handles, state)
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % set panel state
 set(handles.plotSpectrumPanel, 'Visible', state);
@@ -287,7 +287,7 @@ set(handles.plotSpectrumScales, 'String', {'ASD', 'AS', 'PSD', 'PS'});
 set(handles.plotSpectrumScales, 'Value', 1);
 
 % set windows
-set(handles.plotSpectrumWindows, 'String', settings.windows);
+set(handles.plotSpectrumWindows, 'String', ldv_settings.windows);
 set(handles.plotSpectrumWindows, 'Value', 2);
 
 % set nfft and overlap
@@ -307,7 +307,7 @@ end
 %
 function setcoherence(handles, state)
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % set panel state
 set(handles.plotCoherencePanel, 'Visible', state);
@@ -319,7 +319,7 @@ set(handles.plotCoherencePlots, 'Value', 2);
 % primary channel set by dobj list calllback
 
 % set windows
-set(handles.plotCoherenceWindows, 'String', settings.windows);
+set(handles.plotCoherenceWindows, 'String', ldv_settings.windows);
 set(handles.plotCoherenceWindows, 'Value', 2);
 
 
@@ -339,7 +339,7 @@ end
 %
 function setXYscatter(handles, state)
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % set panel state
 set(handles.plotXYscatterPanel, 'Visible', state);
@@ -356,7 +356,7 @@ end
 %
 function settf(handles, state)
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % set panel state
 set(handles.plotTFPanel, 'Visible', state);
@@ -368,7 +368,7 @@ set(handles.plotTFPlots, 'Value', 2);
 % primary channel set by dobj list calllback
 
 % set windows
-set(handles.plotTFWindows, 'String', settings.windows);
+set(handles.plotTFWindows, 'String', ldv_settings.windows);
 set(handles.plotTFWindows, 'Value', 2);
 
 
@@ -389,7 +389,7 @@ end
 %
 function setspectrogram(handles, state)
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % set panel state
 set(handles.plotSpectrogramPanel, 'Visible', state);
@@ -399,7 +399,7 @@ set(handles.plotSpectrogramPlots, 'String', {'single', 'subplots'});
 set(handles.plotSpectrogramPlots, 'Value', 1);
 
 % set windows
-set(handles.plotSpectrogramWindows, 'String', settings.windows);
+set(handles.plotSpectrogramWindows, 'String', ldv_settings.windows);
 set(handles.plotSpectrogramWindows, 'Value', 2);
 
 % set nfft and overlap
@@ -413,7 +413,7 @@ if isempty(nolapstr) || str2num(nolapstr)==0
 end
 
 % set colormaps
-set(handles.plotSpectrogramColorMap, 'String', settings.colormaps);
+set(handles.plotSpectrogramColorMap, 'String', ldv_settings.colormaps);
 set(handles.plotSpectrogramColorMap, 'Value', 1);
 
 
@@ -423,7 +423,7 @@ end
 %
 function setbicohere(handles, state)
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % set panel state
 set(handles.plotBicoherePanel, 'Visible', state);
@@ -433,7 +433,7 @@ set(handles.plotBicoherePlots, 'String', {'single', 'subplots'});
 set(handles.plotBicoherePlots, 'Value', 1);
 
 % set windows
-set(handles.plotBicohereWindows, 'String', settings.windows);
+set(handles.plotBicohereWindows, 'String', ldv_settings.windows);
 set(handles.plotBicohereWindows, 'Value', 1);
 
 % set nfft and overlap
@@ -447,7 +447,7 @@ if isempty(nfstr) || str2num(nfstr)==0
 end
 
 % set colormaps
-set(handles.plotBicohereColorMap, 'String', settings.colormaps);
+set(handles.plotBicohereColorMap, 'String', ldv_settings.colormaps);
 set(handles.plotBicohereColorMap, 'Value', 4);
 
 
@@ -457,7 +457,7 @@ end
 %
 function setOmegaScan(handles, state)
 
-  settings = getappdata(handles.main, 'settings');
+  ldv_settings = getappdata(handles.main, 'ldv_settings');
   
   % set panel state  
   set(handles.plotOmegaScanPanel, 'Visible', state);
@@ -470,7 +470,7 @@ function setOmegaScan(handles, state)
   end
     
   % set colormaps
-  set(handles.plotOmegagramColorMap, 'String', settings.colormaps);
+  set(handles.plotOmegagramColorMap, 'String', ldv_settings.colormaps);
   set(handles.plotOmegagramColorMap, 'Value', 1);
   
   % set normalization style

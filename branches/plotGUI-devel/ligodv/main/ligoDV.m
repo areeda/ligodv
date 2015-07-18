@@ -22,7 +22,7 @@
 
 % Edit the above text to modify the response to help ligoDV
 
-% Last Modified by GUIDE v2.5 24-Dec-2012 09:01:49
+% Last Modified by GUIDE v2.5 12-Apr-2013 15:04:10
 
 %%
 function varargout = ligoDV(varargin)
@@ -76,7 +76,7 @@ ldvparams;
 ldv_logfile;
 
 % make settings structure
-setappdata(handles.main, 'settings', settings);
+setappdata(handles.main, 'ldv_settings', ldv_settings);
 
 % now we have the functions path the rest can go in init()
 handles = ldv_init(handles);
@@ -3619,4 +3619,13 @@ function importWavMI_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
     audioImport(handles);
+    drawnow;
+
+
+% --------------------------------------------------------------------
+function import_csv_Callback(hObject, eventdata, handles)
+% hObject    handle to import_csv (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    csvImport(handles);
     drawnow;

@@ -5,9 +5,9 @@ function dv_clearCache(handles)
 % M Hewitson 09-10-06
 % 
 
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
-fcache = settings.ff.fcache
+fcache = ldv_settings.ff.fcache
 fcache.nfiles = 0;
 fcache.files  = [];
 dv_setFileCache(handles, fcache);

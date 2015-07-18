@@ -38,7 +38,7 @@ if (iscell(channel))
     channel = char(channel);
 end
 % get settings
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 % some defaults
 x  = [];
@@ -71,12 +71,12 @@ secsleft = nsecs;
 if preproc.resample.R > 1
     % we need one second of data to get the sample rate
     
-        [xi,fsi,ign]  = ldv_getNDS2data(dtype, server, port,...
-            startgps, startgps+1, channel, handles, serverchannels,progBar);
+        [xi,fsi]  = ldv_getNDS2data(dtype, server, port,...
+            startgps, startgps+1, channel, handles,progBar);
         unitX = 'Time (sec)';
         unitY = ldv_setunit(handles);
        
-    gd = preproc.resample.R*settings.resample.L-1;
+    gd = preproc.resample.R*ldv_settings.resample.L-1;
     Nextra = ceil(gd/fsi);
 else
     Nextra = 0;
@@ -127,7 +127,7 @@ end
 % we build the preprocessing lowpass filter
 if preproc.resample.R > 1
     fc = 0.90*fsi/2/preproc.resample.R;
-    L = settings.resample.L;
+    L = ldv_settings.resample.L;
     lpfilt = ldv_FIRlowpass(preproc.resample.R, L, fc, fsi, 'lowpass');
     %       fvtool(lpfilt.a);
 end

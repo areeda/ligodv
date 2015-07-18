@@ -8,17 +8,17 @@ function handles = fdlg_init(handles)
 % 
 
 % get settings
-settings = getappdata(handles.main, 'settings');
+ldv_settings = getappdata(handles.main, 'ldv_settings');
 
 %% set drop-down menus
 
 % input mode
-set(handles.fdlg_entryMode, 'String', settings.fdlg.inputmodes);
+set(handles.fdlg_entryMode, 'String', ldv_settings.fdlg.inputmodes);
 set(handles.fdlg_entryMode, 'Value', 1);
 fdlg_setEntryMode(handles);
 
 % Fs select
-set(handles.fdlg_fsSelect, 'String', settings.fdlg.viewfs);
+set(handles.fdlg_fsSelect, 'String', ldv_settings.fdlg.viewfs);
 set(handles.fdlg_fsSelect, 'Value', 1);
 
 

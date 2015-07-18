@@ -1,4 +1,4 @@
-function ligoDV_stvart()
+function ligoDV_start()
 %% LigoDv startup script
 % set paths for java scripts and .m files
 global ranLdvStartup;
@@ -16,9 +16,10 @@ global ranLdvStartup;
         jarPath = [ligodvRootPath '/jars'];
         t=exist(jarPath, 'dir');
         ermsg = '';
-        if (t == 7)
+        
+        if (t == 7)            
             jarList= dir([jarPath '/*.jar']);
-            for(j = [1:length(jarList)])
+            for j = [1:length(jarList)]
                 jar = jarList(j);
                 jarName = [jarPath '/' jar.name];
                 javaaddpath(jarName);
@@ -52,7 +53,7 @@ global ranLdvStartup;
         elseif (~isempty(strfind(comp,'MAC')))
             isMac=1;
         elseif (~isempty(strfind(comp,'LINUX')))
-            isLinux=1
+            isLinux=1;
         end
         %% add paths nds java interface
         ndsPath='';
@@ -60,9 +61,14 @@ global ranLdvStartup;
         ermsg = '';
         
         % first we'll try the fancy new configuration info getter
-        [st res] = system('nds-client-config --javaclasspath');
+        [st, res] = system('nds-client-config --javaclasspath');
         if (st == 0)
             ndsPath = verifyNdsPath(strtrim(res));
+        elseif isMac
+            [st, res] = system('/opt/local/bin/nds-client-config --javaclasspath');
+            if (st == 0)
+                ndsPath = verifyNdsPath(strtrim(res));
+            end
         end
         if (isempty(ndsPath))
             % then we can try to see if they set an environment
@@ -82,6 +88,7 @@ global ranLdvStartup;
             dname=getHomeDir();
             if (isempty(dname))
                 ermsg = 'No home directory available';
+                disp ermsg;
             else
                 % see if we saved it in our preferences/state directory
                 ndspathfile = [dname pathSep 'ndspath.save'];
@@ -151,7 +158,7 @@ global ranLdvStartup;
             end
         end
         % check if we have a valid kerberos ticket
-        [status, result] = system(klistCmd);
+        [status, ~] = system(klistCmd);
         if (status ~= 0)
             msg ='There does not appear to be a valid Kerberos ticket.  You may want ';
             msg = [msg 'to open a terminal window and run "kinit albert.einstein@LIGO.ORG"'];

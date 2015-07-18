@@ -44,9 +44,6 @@ function h = ldvMsgbox(varargin)
     % make the fonts a bit bigger to be readable
     ah = get( h, 'Children' );
     ch = get( ah(textChildn), 'Children' );
-    set( ch, 'FontSize', 12 );
-    set(ch,'FontName','Times');
-    set(ah(btnChildn),'BackgroundColor',[.95 .95 .95]);
     %uiwait(h);     % this presents problems on windows
 end
 

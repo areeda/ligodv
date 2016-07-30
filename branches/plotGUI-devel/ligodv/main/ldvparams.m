@@ -1,6 +1,6 @@
 % LDVPARAMS Set parameters for ligoDV.
 %
-% J Smith and M Hewitson
+% J Areeda J Smith and M Hewitson
 %
 % $Id$
 
@@ -8,7 +8,7 @@
 % current version number used for update check NB: 1.13b1 < 1.13 (the
 % released version).
 global curVersion;
-curVersion = '1.16b2';
+curVersion = '1.16b3';
 
 % Where to report problems
 global contact;

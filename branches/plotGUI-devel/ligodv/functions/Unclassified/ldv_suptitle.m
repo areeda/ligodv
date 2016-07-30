@@ -86,7 +86,7 @@ end
 
 np = get(gcf,'nextplot');
 set(gcf,'nextplot','add');
-if (oldtitle),
+if (isa(oldtitle,'Axes')),
   delete(oldtitle);
 end
 ha=axes('pos',[0 1 1 1],'visible','off','Tag','suptitle');
@@ -97,7 +97,7 @@ axes(haold);
 % fix legend if one exists
 legH = legend;
 if ~isempty(legH)
-  axes(legH);
+ % axes(legH);
 end
 
 if nargout,

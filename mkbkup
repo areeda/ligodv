@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# back up ligodv-working to a dated file
+me=$0
+dir=`dirname $me`
+if [ $dir='.' ]; then
+	dir=$PWD
+fi
+bottomdir=${dir##*/}
+
+out=`mkdname $HOME/backups/$bottomdir bz2`
+
+cd $HOME
+cmd="tar --bzip2 -cf $out $dir"
+echo $cmd
+time $cmd

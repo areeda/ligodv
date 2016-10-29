@@ -1,8 +1,0 @@
-#!/bin/bash
-#
-# back up ligodv-working to a dated file
-
-out=`mkdname $HOME/backups/ligodv-working bz2`
-
-cd $HOME
-tar --bzip2 -cf $out ligodv-working

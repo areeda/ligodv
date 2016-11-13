@@ -34,8 +34,10 @@ function [varargout] = verifyNdsPath( inpath )
                     end
                 end
             end
+        elseif (exist(testPath,'file') && endsWith(testPath,'.jar'))
+            outpath = testPath;
         else
-            ermsg = 'Specified path is not a directory';
+            ermsg = 'Specified path is not a directory or a jar file';
         end
     else
         ermsg = 'Path is empty';

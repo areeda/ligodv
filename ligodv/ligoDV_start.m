@@ -114,7 +114,7 @@ global ranLdvStartup;
                     if (strcmp(answer,'Exit'))
                         error(ermsg);
                     elseif (strcmp(answer,'Browse'))
-                         ndsPath = uigetdir('java','Specify the Java directory in the NDS2 installation (.../lib/java not lib/java/nds2');
+                         ndsPath = uigetdir('.','Specify the Java directory in the NDS2 installation (.../lib/java not lib/java/nds2');
                          if (ndsPath ~= 0)
                              ndsPath = verifyNdsPath(ndsPath);
                              if (~isempty(ndsPath))

@@ -37,7 +37,7 @@ function chanlist = NDS2_JGetChannels(server, varargin)
     chan_type='';
     data_type = DataType.DATA_TYPE_ALL;
     gps = -1;
-    selStruct = struct('cmd','','fs','','fscomp','',...
+        selStruct = struct('cmd','','fs','','fscomp','',...
         'ifo','', 'subsys','','filtstr','');
     if (nargin > 4)
         error('too many arguments in call to NDS2_JGetChannels');
@@ -52,7 +52,7 @@ function chanlist = NDS2_JGetChannels(server, varargin)
         chan_type = varargin{1};
     end
     
-    disp(sprintf('Call to NDS2_JGetChannels: %s, type: %s, gps: %d', server, chan_type, gps));
+    fprintf('Call to NDS2_JGetChannels: %s, type: %s, gps: %d\n', server, chan_type, gps);
     disp(selStruct);
     
     p=strfind(server,':');
@@ -60,7 +60,7 @@ function chanlist = NDS2_JGetChannels(server, varargin)
     port=31200;
     if (p > 1)
         srv=server(1:p-1);
-        port=str2num(server(p+1:length(server)));
+        port=str2double(server(p+1:length(server)));
     end
     
     % build the name matching string
@@ -81,7 +81,7 @@ function chanlist = NDS2_JGetChannels(server, varargin)
     
     if (~hasSubsys && ~isempty(subsys) && ~strcmpi(subsys,'any'))
         if (~hasIfo)
-            srchStr = '*';
+            srchStr = '*:';
         end
         
         srchStr = [srchStr subsys];
@@ -138,7 +138,7 @@ function chanlist = NDS2_JGetChannels(server, varargin)
     chls = conn.findChannels(srchStr, chtype, data_type, minFs, maxFs);
 
     chTime=(now-start)*24*3600;
-    disp(sprintf('conn.find took %.2f sec\n',chTime));
+    fprintf('conn.find took %.2f sec\n\n',chTime);
     
     nchan = length(chls);
     nochan = nchan;

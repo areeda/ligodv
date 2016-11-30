@@ -1,10 +1,17 @@
 *.mlappinstall
 nohup.out
+*.tgz
+*.zip
+*.log
+*.prj
+*.swp
+
 # Windows default autosave extension
 *.asv
 
 # OSX / *nix default autosave extension
 *.m~
+.DS_Store
 
 # Compiled MEX binaries (all platforms)
 *.mex*

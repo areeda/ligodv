@@ -89,7 +89,7 @@ end
 
 
 [xi,fsi]  = ldv_getNDS2data(dtype, server, port,...
-    startgps-Nextra, stopgps, channel, handles,progBar);
+    startgps-Nextra, stopgps+Nextra, channel, handles,progBar);
 unitX = 'Time (sec)';
 unitY = ldv_setunit(handles);
 
